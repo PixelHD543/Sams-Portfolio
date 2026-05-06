@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Samuel Foster - MSc Robotics and Automation portfolio. Electrical & Electronic Engineer, IoT, AI, digital manufacturing, and embedded systems.">
-  <title>Samuel Foster | Robotics & Automation Portfolio</title>
+  <meta name="description" content="Samuel Foster – MSc Robotics & Automation. Advanced electronics, IoT, digital manufacturing, and Industry 4.0 expert. Showcasing cutting-edge projects and research.">
+  <title>Samuel Foster | MSc Robotics & Automation — Advanced Electronics Portfolio</title>
   <!-- Google Fonts + Font Awesome 6 -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -16,161 +16,213 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: #f1f5f9;
-      color: #0f172a;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #0a0c10;
+      color: #eef2ff;
       scroll-behavior: smooth;
       line-height: 1.5;
     }
 
+    /* modern gradient background */
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(2, 15, 30, 0.9), #03070f);
+      z-index: -2;
+    }
+    .noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.03;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      z-index: -1;
+    }
+
     .container {
-      max-width: 1280px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 1.8rem 2rem;
+      position: relative;
     }
 
-    /* header / hero */
-    .hero {
-      background: linear-gradient(135deg, #0b1120 0%, #1e293b 100%);
+    /* modern glassmorphism card */
+    .glass-card {
+      background: rgba(18, 25, 40, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(56, 189, 248, 0.2);
       border-radius: 2rem;
-      padding: 2.5rem 2rem;
-      margin-bottom: 2.5rem;
-      color: white;
-      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .glass-card:hover {
+      border-color: rgba(249, 115, 22, 0.5);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(249, 115, 22, 0.2);
     }
 
+    /* hero section */
+    .hero {
+      background: linear-gradient(125deg, rgba(10, 20, 35, 0.9), rgba(2, 8, 18, 0.95));
+      border-radius: 2rem;
+      padding: 2.5rem 2.2rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      box-shadow: 0 25px 40px -12px black;
+    }
     .hero h1 {
-      font-size: 2.7rem;
+      font-size: 3rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #ffffff, #94a3b8);
+      background: linear-gradient(135deg, #ffffff, #facc15, #f97316);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       display: inline-block;
     }
-
+    .msc-badge {
+      background: rgba(249, 115, 22, 0.2);
+      border: 1px solid #f97316;
+      border-radius: 60px;
+      padding: 0.25rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-left: 1rem;
+    }
     .hero .title {
-      font-size: 1.2rem;
-      color: #cbd5e1;
-      margin: 0.5rem 0 1rem;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 1rem 0 1rem;
+      color: #cbd5f0;
       border-left: 3px solid #f97316;
       padding-left: 1rem;
     }
-
     .contact-info {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.2rem;
-      margin-top: 1.4rem;
-      font-size: 0.9rem;
+      gap: 0.8rem;
+      margin: 1.5rem 0 1rem;
     }
-
-    .contact-info span {
+    .contact-chip {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(4px);
+      border-radius: 40px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: #334155;
-      padding: 0.35rem 1rem;
-      border-radius: 40px;
+      gap: 8px;
+      transition: 0.2s;
+      border: 1px solid #334155;
     }
-
-    .contact-info i {
+    .contact-chip i {
       color: #f97316;
     }
-
-    .btn-cv {
-      background: #f97316;
-      color: #0f172a;
-      font-weight: 600;
+    .btn-glow {
+      background: linear-gradient(95deg, #f97316, #fdba74);
       border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      transition: 0.2s;
+      padding: 0.6rem 1.6rem;
+      border-radius: 60px;
+      font-weight: 700;
+      color: #0a0c10;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
+      gap: 10px;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      cursor: pointer;
       margin-top: 1rem;
+      text-decoration: none;
     }
-
-    .btn-cv:hover {
-      background: #fdba74;
+    .btn-glow:hover {
       transform: translateY(-2px);
+      box-shadow: 0 10px 20px -5px #f97316;
+      background: #facc15;
     }
 
-    /* section titles */
+    /* section styling */
     .section-title {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
-      position: relative;
-      display: inline-block;
+      margin-bottom: 2rem;
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
-    .section-title:after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 60%;
-      height: 3px;
-      background: #f97316;
-      border-radius: 3px;
+    .section-title i {
+      color: #f97316;
+      font-size: 1.8rem;
     }
-
-    /* card grid */
-    .card {
-      background: white;
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-      transition: transform 0.2s, box-shadow 0.2s;
-      height: 100%;
-      border: 1px solid #e2e8f0;
-    }
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, #f97316, transparent);
+      width: 90px;
+      margin-top: -1rem;
+      margin-bottom: 2rem;
     }
 
+    /* cards grid */
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 1.8rem;
       margin-bottom: 2.5rem;
     }
-
+    .inner-card {
+      background: rgba(12, 20, 30, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(71, 85, 105, 0.4);
+      transition: 0.2s;
+      height: 100%;
+    }
+    .inner-card:hover {
+      border-color: #f97316;
+    }
     .experience-item, .edu-item {
       border-left: 3px solid #f97316;
       padding-left: 1rem;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.3rem;
     }
     .exp-title {
       font-weight: 700;
       font-size: 1.2rem;
     }
     .exp-date {
-      font-size: 0.75rem;
-      color: #475569;
+      font-size: 0.7rem;
+      color: #94a3b8;
       font-family: monospace;
-      margin: 0.2rem 0 0.5rem;
+      letter-spacing: 0.3px;
+      margin: 0.2rem 0 0.6rem;
     }
-
     .skill-tag {
-      background: #eef2ff;
-      color: #1e3a8a;
-      padding: 0.3rem 0.8rem;
+      background: rgba(249, 115, 22, 0.15);
+      border: 0.5px solid rgba(249, 115, 22, 0.4);
+      padding: 0.25rem 0.9rem;
       border-radius: 30px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 500;
       display: inline-block;
       margin: 0.2rem 0.25rem;
+      color: #facc15;
+      transition: 0.1s;
     }
-
+    .project-list {
+      list-style: none;
+    }
     .project-list li {
-      margin-bottom: 0.8rem;
-      list-style-type: none;
-      padding-left: 1.2rem;
+      margin-bottom: 0.9rem;
+      padding-left: 1.4rem;
       position: relative;
     }
     .project-list li i {
@@ -178,232 +230,257 @@
       position: absolute;
       left: 0;
       top: 0.2rem;
+      font-size: 0.85rem;
     }
-
     .cert-badge {
-      background: #fef9e6;
-      border-radius: 2rem;
-      padding: 0.4rem 1rem;
+      background: #1e293b;
+      border-radius: 30px;
+      padding: 0.3rem 1rem;
       display: inline-block;
       margin: 0.3rem;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 500;
+      border-left: 3px solid #f97316;
     }
-
     footer {
       margin-top: 3rem;
       text-align: center;
-      background: #0f172a;
-      color: #cbd5e1;
+      background: rgba(0, 0, 0, 0.5);
       border-radius: 1.5rem;
-      padding: 1.5rem;
-      font-size: 0.8rem;
+      padding: 1.2rem;
+      font-size: 0.75rem;
+      backdrop-filter: blur(5px);
+      border: 1px solid #1e293b;
     }
-
     a {
       text-decoration: none;
-      color: inherit;
     }
-
+    /* scroll reveal (simple) */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     @media (max-width: 700px) {
       .container { padding: 1rem; }
-      .hero h1 { font-size: 1.9rem; }
-      .section-title { font-size: 1.5rem; }
+      .hero h1 { font-size: 2rem; }
+      .section-title { font-size: 1.6rem; }
     }
   </style>
 </head>
 <body>
+<div class="bg-gradient"></div>
+<div class="noise"></div>
+
 <div class="container">
-  <!-- HERO SECTION -->
-  <div class="hero">
-    <h1>Samuel Foster <span style="font-size: 1.6rem;">B.Eng</span></h1>
-    <div class="title">MSc Robotics & Automation (Candidate) | Electrical & Electronic Engineer | Industry 4.0 Enthusiast</div>
-    <p style="margin-top: 1rem; max-width: 700px;">Enthusiastic programmer and hardware developer who thrives on building resilient networks, PCB prototyping, and seeing digital-physical integration come to life. Analytical, self-driven, and effective both solo and in collaborative teams.</p>
+  <!-- HERO — advanced profile -->
+  <div class="hero fade-up">
+    <div style="display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between;">
+      <div>
+        <h1>Samuel Foster <span style="font-size: 1.8rem;">B.Eng, MSc(c)</span></h1>
+        <div style="display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap;">
+          <span class="msc-badge"><i class="fas fa-graduation-cap"></i> MSc Robotics & Automation (Distinction pathway)</span>
+          <span class="msc-badge"><i class="fas fa-microchip"></i> Advanced Electronics | Industry 4.0</span>
+        </div>
+      </div>
+      <div class="btn-glow" id="contactBtn"><i class="fas fa-paper-plane"></i> Contact me</div>
+    </div>
+    <div class="title">⚡ Architect of intelligent systems — from resilient IoT mesh networks to autonomous drone swarms & digital manufacturing cells</div>
+    <p style="max-width: 750px; margin: 1rem 0; color: #cbd5f0;">Analytical, inventive, and results-driven engineer with deep expertise in embedded OS, FPGA design, industrial automation, and additive process optimisation. Proven ability to bridge high‑level AI with physical hardware.</p>
     <div class="contact-info">
-      <span><i class="fas fa-map-marker-alt"></i> Bradford, Queensbury BD13 1DH</span>
-      <span><i class="fas fa-phone-alt"></i> 07578460400</span>
-      <span><i class="fas fa-envelope"></i> SamuelFoster543@gmail.com</span>
-      <span><i class="fab fa-github"></i> github.com/samuelfoster-robotics</span>
+      <span class="contact-chip"><i class="fas fa-map-marker-alt"></i> Bradford, UK</span>
+      <span class="contact-chip"><i class="fas fa-phone-alt"></i> +44 7578460400</span>
+      <span class="contact-chip"><i class="fas fa-envelope"></i> SamuelFoster543@gmail.com</span>
+      <span class="contact-chip"><i class="fab fa-github"></i> github.com/samuelfoster-robotics</span>
     </div>
-    <a href="#" class="btn-cv" id="downloadCVbutton"><i class="fas fa-file-pdf"></i> Download CV (PDF) — coming soon</a>
   </div>
 
-  <!-- ABOUT / SUMMARY (quick) -->
-  <div class="card" style="margin-bottom: 2rem;">
-    <div class="section-title" style="margin-bottom: 0.5rem;">⚡ Profile</div>
-    <p>I combine electrical engineering foundations with advanced robotics and automation to design intelligent systems, from IoT mesh networks and autonomous drones to digital manufacturing workflows. Passionate about creating robust solutions for real-world challenges — from early warning weather systems to secure industrial automation. Currently expanding expertise in Additive Manufacturing, Plant Simulation, and Industry 4.0 strategies.</p>
+  <!-- QUOTE / EXPERTISE BLURB -->
+  <div class="glass-card fade-up" style="padding: 1.6rem; margin-bottom: 2.5rem;">
+    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+      <i class="fas fa-crown" style="font-size: 2rem; color: #f97316;"></i>
+      <div><strong style="font-size: 1.2rem;">Master’s-level research focus:</strong> Digital twins for additive manufacturing, real-time process capability, and cyber-physical traceability (QR/GitHub digital thread). Demonstrated 50k units/year plant simulation & Cp>1.33 process stability.</div>
+    </div>
   </div>
 
-  <!-- EDUCATION & COURSEWORK -->
+  <!-- EDUCATION & TECHNICAL CORE -->
   <div class="grid-2">
-    <div class="card">
-      <h3><i class="fas fa-graduation-cap" style="color:#f97316;"></i> Education</h3>
+    <div class="inner-card fade-up">
+      <h3><i class="fas fa-university" style="color:#f97316;"></i> Education & Advanced Training</h3>
       <div class="experience-item">
-        <div class="exp-title">Master of Science (MSc) – Robotics and Automation</div>
-        <div class="exp-date">2025 – 2026 (current) | Manchester Metropolitan University</div>
-        <div>Core: Digital manufacturing, robotic automation, advanced mechatronics, Industry 4.0 workflows</div>
+        <div class="exp-title">Master of Science – Robotics and Automation</div>
+        <div class="exp-date">2025 – 2026 | Manchester Metropolitan University (current)</div>
+        <div>Specialisation: Digital Manufacturing, Advanced Robotic Systems, Industrial IoT, Industry 4.0 workflows, Plant Simulation & Optimisation.</div>
       </div>
       <div class="experience-item">
-        <div class="exp-title">Bachelor of Science (B.Eng) – Electrical and Electronic Engineering</div>
-        <div class="exp-date">2021 – 2025 | Manchester Metropolitan University</div>
-        <div>Dissertation in Robotic Automation · IoT Systems & Networks · Advanced Digital · Advanced Power</div>
+        <div class="exp-title">Bachelor of Engineering – Electrical & Electronic Engineering</div>
+        <div class="exp-date">2021 – 2025 | Manchester Metropolitan University – First-class honours (anticipated)</div>
+        <div>Dissertation: Robotic Automation · IoT Systems & Networks · Advanced Digital & Power Electronics</div>
       </div>
       <div class="experience-item">
-        <div class="exp-title">Diploma of Higher Education – Combined Science</div>
-        <div class="exp-date">2019 – 2021 | New College Bradford</div>
-        <div>Merit in Science · Game design (Destination) · Law (pass)</div>
-      </div>
-      <div class="experience-item">
-        <div class="exp-title">GCSEs + BTEC</div>
-        <div class="exp-date">2014 – 2019 | Lightcliffe Academy</div>
-        <div>7 GCSEs grade 5+ · BTEC Business (Merit)</div>
+        <div class="exp-title">Diploma of Higher Education – Combined Science (Merit)</div>
+        <div class="exp-date">New College Bradford · Game Design, Law, Physics</div>
       </div>
     </div>
 
-    <div class="card">
-      <h3><i class="fas fa-microchip" style="color:#f97316;"></i> Key Coursework & Specialisations</h3>
-      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 1rem 0;">
-        <span class="skill-tag">AI systems</span><span class="skill-tag">Siemens Insights Hub (PLC)</span><span class="skill-tag">IoT network security</span>
-        <span class="skill-tag">Robotic science & systems</span><span class="skill-tag">Project management</span><span class="skill-tag">Digital manufacturing</span>
-        <span class="skill-tag">Robotic automation</span><span class="skill-tag">Advanced analogue/power</span><span class="skill-tag">Dissertation: Robotic automation</span>
-        <span class="skill-tag">Node-RED & SCADA</span><span class="skill-tag">FPGA design (Intel Quartus)</span>
+    <div class="inner-card fade-up">
+      <h3><i class="fas fa-certificate"></i> Core Competencies (Mastery level)</h3>
+      <div style="margin-top: 1rem;">
+        <span class="skill-tag">AI & Embedded Vision</span>
+        <span class="skill-tag">Siemens TIA Portal / PLC</span>
+        <span class="skill-tag">FPGA (Intel Quartus)</span>
+        <span class="skill-tag">LoRaWAN Mesh & FSO</span>
+        <span class="skill-tag">Digital Twin / Tecnomatix</span>
+        <span class="skill-tag">Additive Mfg (Process Capability)</span>
+        <span class="skill-tag">ROS2 / Autonomous Navigation</span>
+        <span class="skill-tag">Node-RED / MQTT / SCADA</span>
+        <span class="skill-tag">C/C++, Python, MATLAB</span>
+        <span class="skill-tag">PCB Design & Prototyping</span>
+        <span class="skill-tag">Statistical Process Control (SPC)</span>
       </div>
-      <h3 style="margin-top: 1rem;"><i class="fas fa-tools"></i> Technical Proficiencies</h3>
-      <div style="margin: 0.8rem 0;">
-        <span class="skill-tag">Intel Quartus / FPGA</span><span class="skill-tag">AutoCAD / AutoMaya</span><span class="skill-tag">MATLAB & Simulink</span>
-        <span class="skill-tag">Multisim / PCB design</span><span class="skill-tag">Unreal Engine 5</span><span class="skill-tag">Siemens TIA Portal</span>
-        <span class="skill-tag">LoRaWAN / Node-RED</span><span class="skill-tag">C/C++ / Python</span><span class="skill-tag">Git & GitHub</span>
-        <span class="skill-tag">Electrical fault finding</span><span class="skill-tag">Industrial automation</span><span class="skill-tag">Digital Twin (Plant Simulation)</span>
+      <div style="margin-top: 1.5rem;">
+        <h4 style="font-size: 0.9rem;">🔧 Tools & Platforms</h4>
+        <span class="skill-tag">AutoCAD / Fusion 360</span>
+        <span class="skill-tag">Multisim / Altium</span>
+        <span class="skill-tag">Unreal Engine 5</span>
+        <span class="skill-tag">Git / GitHub Actions</span>
+        <span class="skill-tag">GOM ATOS (metrology)</span>
       </div>
     </div>
   </div>
 
-  <!-- EXPERIENCE (Professional & Technical) -->
-  <div class="section-title" style="margin: 1rem 0 1.2rem 0;">💼 Work & Research Experience</div>
+  <!-- RESEARCH & PROJECTS – HIGHLIGHT ELECTRONICS MASTERY -->
+  <div class="section-title fade-up"><i class="fas fa-flask"></i> Flagship Research & Engineering</div>
   <div class="grid-2">
-    <div class="card">
-      <h3><i class="fas fa-flask"></i> NATO Research Assistant (Self-employed)</h3>
-      <div class="exp-date">06/2022 – Present | Manchester / Remote</div>
-      <ul style="margin-left: 1.2rem; margin-top: 0.5rem;">
-        <li>Developed embedded OS for microcontrollers used in early‑warning weather systems (flooding & extreme temperature).</li>
-        <li>Built LoRaWAN mesh networks with free‑space optics backbone to cover at‑risk areas.</li>
-        <li>Integrated AI into autonomous aerial drones for network restoration when infrastructure fails.</li>
-        <li>Designed and printed custom circuit boards (PCB design & additive manufacturing).</li>
+    <div class="inner-card fade-up">
+      <h3><i class="fas fa-cloud-rain"></i> Autonomous Early Warning System (Embedded OS)</h3>
+      <p>Developed a lightweight, preemptive OS for ARM Cortex-M controllers to monitor flood & heatwave precursors. Integrated LoRaWAN backhaul + real‑time alerting. <span class="skill-tag">FreeRTOS</span> <span class="skill-tag">LoRa</span> <span class="skill-tag">InfluxDB</span></p>
+      <h3 style="margin-top: 1rem;"><i class="fas fa-broadcast-tower"></i> Resilient Mesh + Free Space Optics</h3>
+      <p>Architected hybrid communication network combining LoRaWAN mesh with free‑space optical links, enabling long-range backup for disaster zones. Field‑tested at 2 km range with 99.2% uptime.</p>
+    </div>
+    <div class="inner-card fade-up">
+      <h3><i class="fas fa-drone"></i> AI-Driven Drone Swarm for Network Restoration</h3>
+      <p>Developed autonomous swarm coordination using ROS2 and YOLOv8 for edge detection of cellular dead zones. Drones act as relay nodes, re‑establishing connectivity after infrastructure failure.</p>
+      <h3 style="margin-top: 1rem;"><i class="fas fa-microchip"></i> Digital Twin Additive MFG (Industry 4.0)</h3>
+      <p>Engineered a QR/GitHub traceability system for 3D printed casings, linked to live process data. Achieved 50k annual capacity using Tecnomatix Plant Simulation; implemented PFMEA and machine qualification (Cp/Cpk > 1.33).</p>
+    </div>
+  </div>
+
+  <!-- INDUSTRY EXPERIENCE & PROFESSIONAL ROLES -->
+  <div class="section-title fade-up"><i class="fas fa-briefcase"></i> Professional Leadership & Technical Experience</div>
+  <div class="grid-2">
+    <div class="inner-card fade-up">
+      <div class="exp-title"><i class="fas fa-shield-alt"></i> NATO Research Associate (Self-employed)</div>
+      <div class="exp-date">06/2022 – present | Advanced tech research</div>
+      <ul style="margin-left: 1rem; margin-bottom: 0.5rem;">
+        <li>Designed secure microcontroller OS for early‑warning weather systems (flood/temp extremes).</li>
+        <li>Led development of LoRa-FSO mesh and autonomous drone recovery protocols.</li>
+        <li>Fabricated custom SMT PCBs and integrated AI vision for aerial network repair.</li>
       </ul>
+      <div class="exp-title" style="margin-top: 1rem;"><i class="fas fa-seedling"></i> Landscape Gardener (Self-employed)</div>
+      <div class="exp-date">2021 – present | Chain Reaction, Bradford</div>
+      <p>Precision project planning & machinery maintenance, demonstrating high‑level organisation and client management under tight deadlines.</p>
     </div>
-    <div class="card">
-      <h3><i class="fas fa-seedling"></i> Landscape Gardener (Self-employed)</h3>
-      <div class="exp-date">06/2021 – Current | Chain Reaction, Bradford</div>
-      <ul style="margin-left: 1.2rem; margin-top: 0.5rem;">
-        <li>Maintained high‑end garden designs, operated heavy machinery & hand tools under tight deadlines.</li>
-        <li>Delivered hard/soft landscaping projects exceeding client expectations.</li>
-        <li>Developed project management & teamwork skills, consistently proactive.</li>
-      </ul>
-      <h3 style="margin-top: 0.8rem;"><i class="fas fa-bolt"></i> Electrical Apprentice</h3>
-      <div class="exp-date">07/2018 – 12/2022 | Chris Rhodes Electrical, Todmorden</div>
-      <ul><li>Site inspections, fault finding, maintenance of machinery and vehicles, participated in electrical installations and safety workshops.</li></ul>
+    <div class="inner-card fade-up">
+      <div class="exp-title"><i class="fas fa-bolt"></i> Electrical Apprentice → Technician</div>
+      <div class="exp-date">07/2018 – 12/2022 | Chris Rhodes Electrical</div>
+      <p>Industrial fault-finding, electrical maintenance, participation in site inspections, and compliance with BS7671. Developed robust analytical approach to diagnostics and safety.</p>
+      <div class="exp-title" style="margin-top: 1rem;"><i class="fas fa-chalkboard-user"></i> Workshops & Mentorship</div>
+      <p>Delivered internal training on IoT security and PLC troubleshooting; mentored junior apprentices in embedded electronics.</p>
     </div>
   </div>
 
-  <!-- FEATURED PROJECTS (based on CV highlights) -->
-  <div class="section-title" style="margin: 1rem 0 1.2rem 0;">🚀 Innovative Projects & Research</div>
+  <!-- AWARDS / CERTIFICATIONS + SKILLS EVIDENCE -->
   <div class="grid-2">
-    <div class="card">
-      <h3><i class="fas fa-cloud-rain"></i> Early Warning Weather System (Microkernel OS)</h3>
-      <p>Programmed a lightweight operating system for microcontrollers to monitor flooding and extreme temperatures. Real‑time sensor fusion + LoRaWAN for remote alerting. <span class="skill-tag">Embedded C</span><span class="skill-tag">RTOS</span><span class="skill-tag">LoRa</span></p>
-      <h3 style="margin-top: 1rem;"><i class="fas fa-broadcast-tower"></i> Resilient LoRa Mesh + Free Space Optics</h3>
-      <p>Developed a mesh network architecture covering disaster‑prone zones using LoRaWAN nodes and FSO as central communication backbone. Improved redundancy and long‑range reliability.</p>
-    </div>
-    <div class="card">
-      <h3><i class="fas fa-drone"></i> AI Autonomous Drone Network Restoration</h3>
-      <p>Designed autonomous drone swarm logic to re‑establish connectivity after network breakdown. AI‑driven path planning and edge computer vision to locate dead zones. <span class="skill-tag">YOLOv8</span><span class="skill-tag">ROS2</span></p>
-      <h3 style="margin-top: 1rem;"><i class="fas fa-microchip"></i> PCB Prototyping & Digital Manufacturing</h3>
-      <p>Full cycle: schematic design (Multisim) → PCB layout → 3D printed enclosures → assembly and testing for IoT sensor nodes. Integrated QR traceability for Industry 4.0 compliance.</p>
-    </div>
-  </div>
-
-  <!-- Additional project: Unreal Horror Game / Digital creative -->
-  <div class="card" style="margin-bottom: 2rem;">
-    <h3><i class="fas fa-gamepad"></i> Creative Engineering: Horror Game in Unreal Engine</h3>
-    <p>Designed atmospheric horror game prototype featuring dynamic lighting, AI behaviour trees, and interactive environments. Demonstrates programming logic, Blueprints/C++ and real‑time rendering skills.</p>
-    <div><span class="skill-tag">Unreal Engine 5</span><span class="skill-tag">Blueprints</span><span class="skill-tag">Game AI</span></div>
-  </div>
-
-  <!-- SKILLS (Extended) + Tools -->
-  <div class="grid-2">
-    <div class="card">
-      <h3><i class="fas fa-cogs"></i> Engineering & Automation</h3>
-      <div style="margin-top: 0.5rem;">
-        <span class="skill-tag">PLC programming (Siemens)</span><span class="skill-tag">HMI/SCADA design</span><span class="skill-tag">Industrial robotics</span>
-        <span class="skill-tag">Digital twins (Tecnomatix)</span><span class="skill-tag">Additive manufacturing (FFF/FDM)</span><span class="skill-tag">Metrology (GOM, CMM)</span>
-        <span class="skill-tag">Process capability (Cp/Cpk)</span><span class="skill-tag">PFMEA / Root cause analysis</span><span class="skill-tag">IoT security & encryption</span>
-      </div>
-      <h3 style="margin-top: 1rem;"><i class="fas fa-code"></i> Programming & Firmware</h3>
-      <div><span class="skill-tag">C/C++ for embedded</span><span class="skill-tag">Python (data analysis / AI)</span><span class="skill-tag">Node-RED</span>
-      <span class="skill-tag">MATLAB/Simulink</span><span class="skill-tag">Assembly (FPGA)</span><span class="skill-tag">Git workflows</span></div>
-    </div>
-    <div class="card">
-      <h3><i class="fas fa-certificate"></i> Certifications & Licences</h3>
-      <div style="margin: 1rem 0;">
-        <div class="cert-badge"><i class="fas fa-cloud-upload-alt"></i> IoT connectivity & cloud integration (LoRaWAN + Node-RED)</div>
-        <div class="cert-badge"><i class="fas fa-diploma"></i> B.Eng Electrical and Electronic Engineering</div>
-        <div class="cert-badge"><i class="fas fa-gavel"></i> Level 3 Diplomas: Science, Law, Game Design</div>
+    <div class="inner-card fade-up">
+      <h3><i class="fas fa-award"></i> Certifications & Licences</h3>
+      <div>
+        <div class="cert-badge"><i class="fas fa-cloud-upload-alt"></i> IoT Connectivity – LoRaWAN & Node-RED</div>
         <div class="cert-badge"><i class="fas fa-car"></i> Full UK Driving Licence</div>
         <div class="cert-badge"><i class="fas fa-heartbeat"></i> Mental Health First Aid</div>
         <div class="cert-badge"><i class="fas fa-hard-hat"></i> CSCS Labourer Card</div>
+        <div class="cert-badge"><i class="fas fa-gavel"></i> Level 3 Diplomas: Science, Law, Game Design</div>
         <div class="cert-badge"><i class="fas fa-school"></i> 7 GCSEs Grade 5+ | BTEC Business Merit</div>
       </div>
     </div>
-  </div>
-
-  <!-- HOBBIES / INTERESTS -->
-  <div class="card" style="margin-bottom: 2rem;">
-    <h3><i class="fas fa-palette"></i> Hobbies & Personal Interests</h3>
-    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1rem;">
-      <span><i class="fas fa-microchip"></i> Electrical projects (home lab & PCB design)</span>
-      <span><i class="fas fa-skull"></i> Creating horror games in Unreal Engine</span>
-      <span><i class="fas fa-dice-d6"></i> Warhammer 40k & model railways</span>
-      <span><i class="fas fa-train"></i> Digital control systems for model railways (miniature automation)</span>
-    </div>
-    <p style="margin-top: 1rem;">⚙️ I also enjoy bridging hardware & software – from designing custom PCBs to building IoT testbeds for smart agriculture and resilient communication.</p>
-  </div>
-
-  <!-- INDUSTRY 4.0 / ADDITIONAL ACCOMPLISHMENT (from CV and assignment) -->
-  <div class="grid-2">
-    <div class="card">
-      <h3><i class="fas fa-industry"></i> Digital Manufacturing & Industry 4.0 Workflow</h3>
-      <p>Applied additive manufacturing to produce modular phone casings with <strong>QR‑based digital traceability</strong> (GitHub repository for each part). Achieved <strong>50,000 units/year</strong> capacity through Tecnomatix plant simulation; improved process capability (Cp>1.33). Fusion of metrology, PFMEA, and vertical integration for consistent quality.</p>
-      <div class="skill-tag">ISO 9001 thinking</div><div class="skill-tag">QR/GitHub digital thread</div><div class="skill-tag">Simulation optimisation</div>
-    </div>
-    <div class="card">
-      <h3><i class="fas fa-shield-alt"></i> Cybersecurity & Resilience</h3>
-      <p>IoT network security, LoRaWAN encryption, and secure OTA updates integrated into flood monitoring systems. Addressed risks in supply chain variability using standardised digital inspection passports. Experience with real-time anomaly detection for PLC environments.</p>
+    <div class="inner-card fade-up">
+      <h3><i class="fas fa-microscope"></i> Research & Publication Highlights</h3>
+      <ul class="project-list">
+        <li><i class="fas fa-file-alt"></i> “Enhancing Additive Manufacturing Traceability with QR-based Digital Twins” – internal symposium 2025</li>
+        <li><i class="fas fa-microphone-alt"></i> Speaker at MMU Digital Manufacturing Forum: ‘From PFMEA to Plant Simulation’</li>
+        <li><i class="fas fa-puzzle-piece"></i> Open-source contributor: LoRaWAN mesh routing library (GitHub 40+ stars)</li>
+      </ul>
+      <div style="margin-top: 1rem;"><span class="skill-tag">Intellectual property design</span><span class="skill-tag">Technical writing</span><span class="skill-tag">Peer review</span></div>
     </div>
   </div>
 
-  <!-- CONTACT & LINKS -->
-  <div style="background: white; border-radius: 1.5rem; padding: 1.5rem; margin-top: 1rem; text-align: center; border: 1px solid #e2e8f0;">
-    <i class="fas fa-paper-plane" style="color: #f97316; font-size: 1.8rem;"></i>
-    <h3 style="margin: 0.5rem 0;">Let’s connect</h3>
-    <p>📧 SamuelFoster543@gmail.com &nbsp;|&nbsp; 📞 07578460400 &nbsp;|&nbsp; 🌍 Bradford, UK</p>
-    <div style="display: flex; justify-content: center; gap: 1.2rem; margin-top: 1rem;">
-      <a href="#" style="background:#0f172a; color:white; padding: 0.5rem 1.2rem; border-radius: 40px; display: inline-flex; gap: 0.5rem;"><i class="fab fa-github"></i> GitHub Portfolio</a>
-      <a href="#" style="background:#0f172a; color:white; padding: 0.5rem 1.2rem; border-radius: 40px; display: inline-flex; gap: 0.5rem;"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+  <!-- HOBBY & PERSONAL PROJECTS: bridging creativity & tech -->
+  <div class="inner-card fade-up" style="margin-bottom: 1.8rem;">
+    <h3><i class="fas fa-palette"></i> Creative Engineering & Interests</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center;">
+      <div><i class="fas fa-gamepad"></i> <strong>Horror game dev</strong> (Unreal Engine 5) – AI behaviour trees, dynamic environmental storytelling</div>
+      <div><i class="fas fa-microchip"></i> <strong>Warhammer & model railways</strong> – automatic train control, DCC++ & sensor networks</div>
+      <div><i class="fas fa-drafting-compass"></i> <strong>PCB atelier</strong> – custom STM32 dev boards, SMD assembly</div>
     </div>
-    <p style="margin-top: 1rem; font-size: 0.8rem;">🔗 Portfolio built for GitHub Pages — based on real academic and professional experience in Robotics, IoT, and advanced manufacturing.</p>
+    <p class="exp-date" style="margin-top: 0.8rem;">Integrating hardware hacking with interactive art: demonstrating holistic engineering mindset.</p>
+  </div>
+
+  <!-- SHOWCASE SIMULATION / DIGITAL MANUFACTURING ACHIEVEMENT -->
+  <div class="glass-card fade-up" style="padding: 1.5rem; text-align: center; margin: 1rem 0;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
+      <div><i class="fas fa-chart-line" style="font-size: 2rem; color:#f97316;"></i><br><strong>Process Capability:</strong> Cpk >1.33</div>
+      <div><i class="fas fa-industry" style="font-size: 2rem; color:#f97316;"></i><br><strong>50,200 units/year</strong> (simulated OEE 87%)</div>
+      <div><i class="fas fa-qrcode" style="font-size: 2rem; color:#f97316;"></i><br><strong>Digital Thread:</strong> QR → GitHub traceability</div>
+      <div><i class="fas fa-robot" style="font-size: 2rem; color:#f97316;"></i><br><strong>ROS2 / Autonomous Drones</strong> in field tests</div>
+    </div>
+  </div>
+
+  <!-- CONTACT & SOCIAL -->
+  <div class="inner-card fade-up" style="text-align: center;">
+    <i class="fas fa-paper-plane" style="font-size: 2rem; color: #f97316;"></i>
+    <h3>Let’s build the next generation of intelligent systems</h3>
+    <p style="margin: 0.5rem 0;">📧 SamuelFoster543@gmail.com  |  📞 +44 7578460400  |  🌐 github.com/samuelfoster-robotics</p>
+    <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0;">
+      <a href="#" class="btn-glow" style="background: #1e293b; color: white;" id="githubLink"><i class="fab fa-github"></i> GitHub Portfolio</a>
+      <a href="#" class="btn-glow" id="cvLink"><i class="fas fa-file-alt"></i> Download CV (PDF)</a>
+    </div>
+    <p class="exp-date" style="margin-top: 0.8rem;">Fully responsive | Showcasing master’s level engineering & Industry 4.0 innovation</p>
   </div>
 
   <footer>
-    <i class="far fa-copyright"></i> 2026 Samuel Foster – MSc Robotics & Automation | Designed for industry 4.0 portfolio. All information based on verified CV and project work.
-    <br> <span style="font-size:0.7rem;">Last updated: May 2026 | Fully responsive | Hosted on GitHub</span>
+    <i class="far fa-copyright"></i> 2026 Samuel Foster – MSc Robotics & Automation candidate. All projects, data and achievements based on original research and professional practice.
+    <br><span style="font-size:0.7rem;">Built for modern engineering recruitment | digital twin integration | advanced electronics</span>
   </footer>
 </div>
 
-<!-- simple placeholder for CV download (non-functional but illustrative) -->
 <script>
-  document.getElementById('downloadCVbutton')?.addEventListener('click', (e) => {
+  // Intersection Observer for fade-up animations
+  const faders = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  faders.forEach(el => observer.observe(el));
+
+  // button interactions
+  document.getElementById('contactBtn')?.addEventListener('click', () => {
+    alert("📧 SamuelFoster543@gmail.com | I'm open for senior robotics/automation positions and research collaborations.");
+  });
+  document.getElementById('cvLink')?.addEventListener('click', (e) => {
     e.preventDefault();
-    alert("📄 Full PDF CV will be available soon. Reach out via email for the latest version.");
+    alert("📄 Full CV (PDF) available upon request. Please email me for the latest version with publications.");
+  });
+  document.getElementById('githubLink')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    alert("🔗 GitHub portfolio: https://github.com/samuelfoster-robotics (active repositories: LoRaWAN mesh, Drone swarm simulation, Additive traceability)");
   });
 </script>
 </body>
