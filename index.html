@@ -48,7 +48,6 @@
       justify-content: center;
       gap: 0.3rem;
       border: 1px solid rgba(249, 115, 22, 0.25);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
     .nav-link {
       color: #CBD5E1;
@@ -62,7 +61,7 @@
       align-items: center;
       gap: 8px;
     }
-    .nav-link i { color: #F97316; font-size: 0.85rem; }
+    .nav-link i { color: #F97316; }
     .nav-link:hover, .nav-link.active { background: rgba(249, 115, 22, 0.2); color: #FACC15; }
     .hero {
       background: linear-gradient(125deg, rgba(5, 15, 30, 0.95), rgba(2, 10, 22, 0.98));
@@ -220,7 +219,6 @@
       transition: 0.3s;
       cursor: pointer;
       z-index: 99;
-      box-shadow: 0 5px 12px black;
     }
     .back2top.visible { opacity: 1; visibility: visible; }
     @media (max-width: 780px) {
@@ -242,7 +240,6 @@
     <a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> Contact</a>
   </div>
 
-  <!-- Hero Section -->
   <section id="home">
     <div class="hero fade-up">
       <div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
@@ -254,10 +251,10 @@
             <span class="elec-badge"><i class="fas fa-industry"></i> PLC / Industrial</span>
           </div>
         </div>
-        <a href="Samuel_Foster_CV.pdf" class="btn-glow" download><i class="fas fa-download"></i> Download CV (PDF)</a>
+        <a href="assets/Samuel_Foster_CV.pdf" class="btn-glow" download><i class="fas fa-download"></i> Download CV (PDF)</a>
       </div>
       <div class="title">🔌 Electronics-first engineer — FPGA, embedded RTOS, LoRa mesh networks, and Industry 4.0</div>
-      <p style="max-width: 750px; color: #CBD5F0; margin-bottom: 0.8rem;">Master's candidate in Robotics & Automation with hands-on experience in PCB design, VHDL/Verilog, ARM Cortex-M, and Siemens PLCs. I build systems that work at the intersection of hardware and software.</p>
+      <p style="max-width: 750px; color: #CBD5F0; margin-bottom: 0.8rem;">Master's candidate in Robotics & Automation with hands-on experience in PCB design, VHDL/Verilog, ARM Cortex-M, and Siemens PLCs.</p>
       <div class="contact-info">
         <span class="contact-chip"><i class="fas fa-map-pin"></i> Bradford, UK</span>
         <span class="contact-chip"><i class="fas fa-phone-alt"></i> +44 7578460400</span>
@@ -267,17 +264,15 @@
     </div>
   </section>
 
-  <!-- Achievements Strip -->
   <div class="card fade-up" style="padding: 1.2rem; text-align: center; margin: 1rem 0 2rem;">
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
-      <div><i class="fas fa-microchip" style="font-size: 1.5rem; color:#F97316;"></i> <strong>FPGA / DE10-Nano</strong><br>Verilog, RISC-V, FIR filters</div>
+      <div><i class="fas fa-microchip" style="font-size: 1.5rem; color:#F97316;"></i> <strong>FPGA / DE10-Lite</strong><br>Verilog, RISC-V, FIR filters</div>
       <div><i class="fas fa-robot" style="font-size: 1.5rem; color:#F97316;"></i> <strong>CoppeliaSim + MATLAB</strong><br>Inverse kinematics & PID</div>
       <div><i class="fab fa-github" style="font-size: 1.5rem; color:#F97316;"></i> <strong>6 Live Repos</strong><br>Blog, game, portfolio, business</div>
       <div><i class="fas fa-gamepad" style="font-size: 1.5rem; color:#F97316;"></i> <strong>Dino Duel TCG</strong><br>Live browser game</div>
     </div>
   </div>
 
-  <!-- PROJECTS SECTION -->
   <section id="projects">
     <div class="section-title fade-up"><i class="fas fa-project-diagram"></i> Featured Engineering Projects</div>
     
@@ -285,43 +280,43 @@
       <!-- Project 1: Dino Duel TCG -->
       <div class="inner-card fade-up">
         <div class="project-img">
-          <img src="images/dino-game/main-battle-screen.png" alt="Dino Duel TCG gameplay screenshot" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-gamepad\' style=\'font-size:2rem;color:#F97316;\'></i><span style=\'margin-left:0.5rem;\'>🎮 Screenshot coming soon</span></div>'">
+          <img src="images/thumb-dino-game.png" alt="Dino Duel TCG" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-gamepad\' style=\'font-size:2rem;color:#F97316;\'></i><span>🎮 Dino Duel TCG</span></div>'">
         </div>
         <h3><i class="fas fa-dragon"></i> Dino Duel TCG – Browser Card Game</h3>
         <p>Fully playable trading card game with ability system, energy costs, and 42 commits of Git history.</p>
         <div><span class="skill-chip">JavaScript ES6</span><span class="skill-chip">HTML5/CSS3</span><span class="skill-chip">Git (42 commits)</span></div>
         <div class="project-links">
-          <a href="project-dino-game.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://pixelhd543.github.io/DinoGame/"><i class="fas fa-play"></i> Live Demo</a>
-          <a href="https://github.com/PixelHD543/DinoGame"><i class="fab fa-github"></i> Repo</a>
+          <a href="project-dino-game.html">Full Project Page</a>
+          <a href="https://pixelhd543.github.io/DinoGame/">Live Demo</a>
+          <a href="https://github.com/PixelHD543/DinoGame">GitHub Repo</a>
         </div>
       </div>
 
-      <!-- Project 2: FPGA / DE10-Lite -->
+      <!-- Project 2: FPGA DE10-Lite -->
       <div class="inner-card fade-up">
         <div class="project-img">
-          <img src="images/fpga/board-photo.jpg" alt="DE10-Lite FPGA board running 4-bit ALU" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-microchip\' style=\'font-size:2rem;color:#F97316;\'></i><span style=\'margin-left:0.5rem;\'>📸 Photo coming soon</span></div>'">
+          <img src="images/thumb-fpga.png" alt="FPGA DE10-Lite 4-bit ALU" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-microchip\' style=\'font-size:2rem;color:#F97316;\'></i><span>📸 FPGA Project</span></div>'">
         </div>
         <h3><i class="fab fa-intel"></i> FPGA Development – Quartus & DE10-Lite</h3>
-        <p>4-bit ALU designed from scratch. Verilog for real-time signal processing, custom RISC-V soft-core, and hardware acceleration.</p>
+        <p>4-bit ALU designed from scratch. Verilog for real-time signal processing, custom RISC-V soft-core.</p>
         <div><span class="skill-chip">Intel Quartus</span><span class="skill-chip">Verilog/VHDL</span><span class="skill-chip">DE10-Lite</span></div>
         <div class="project-links">
-          <a href="project-fpga-de10.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://github.com/PixelHD543"><i class="fab fa-github"></i> GitHub Profile</a>
+          <a href="project-fpga-de10.html">Full Project Page</a>
+          <a href="https://github.com/PixelHD543">GitHub Profile</a>
         </div>
       </div>
 
       <!-- Project 3: CoppeliaSim + MATLAB -->
       <div class="inner-card fade-up">
         <div class="project-img">
-          <img src="images/coppeliasim/figure3-1-workcell.png" alt="CoppeliaSim workcell isometric view" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-robot\' style=\'font-size:2rem;color:#F97316;\'></i><span style=\'margin-left:0.5rem;\'>📸 Simulation screenshot coming soon</span></div>'">
+          <img src="images/thumb-coppeliasim.png" alt="CoppeliaSim Robotics Simulation" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-robot\' style=\'font-size:2rem;color:#F97316;\'></i><span>📸 CoppeliaSim</span></div>'">
         </div>
         <h3><i class="fas fa-chart-line"></i> CoppeliaSim Robotics – MATLAB Integration</h3>
-        <p>Physics-based robot arm simulation with custom MATLAB control algorithms: inverse kinematics, path planning, real-time visualisation.</p>
+        <p>Physics-based robot arm simulation with custom MATLAB control algorithms: inverse kinematics, path planning.</p>
         <div><span class="skill-chip">CoppeliaSim</span><span class="skill-chip">MATLAB</span><span class="skill-chip">IK/PID</span></div>
         <div class="project-links">
-          <a href="project-coppeliasim-matlab.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://github.com/PixelHD543"><i class="fab fa-github"></i> MATLAB Scripts</a>
+          <a href="project-coppeliasim-matlab.html">Full Project Page</a>
+          <a href="https://github.com/PixelHD543">MATLAB Scripts</a>
         </div>
       </div>
     </div>
@@ -330,49 +325,48 @@
       <!-- Project 4: Digital Manufacturing Blog -->
       <div class="inner-card fade-up">
         <div class="project-img">
-          <img src="images/digital-mfg/casing-cad.png" alt="CAD model of modular phone casing" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-industry\' style=\'font-size:2rem;color:#F97316;\'></i><span style=\'margin-left:0.5rem;\'>📸 Blog screenshot coming soon</span></div>'">
+          <img src="images/thumb-digital-mfg.png" alt="Digital Manufacturing Blog" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-industry\' style=\'font-size:2rem;color:#F97316;\'></i><span>📸 Digital MFG</span></div>'">
         </div>
         <h3><i class="fas fa-blog"></i> Digital Manufacturing Blog</h3>
-        <p>Technical writing on additive manufacturing, digital twins, and QR-based traceability. PFMEA, Cpk>1.33, 50,064 units/year simulation.</p>
+        <p>Technical writing on additive manufacturing, digital twins, and QR-based traceability. PFMEA, Cpk>1.33, 50,064 units/year.</p>
         <div><span class="skill-chip">Digital Thread</span><span class="skill-chip">QR Systems</span><span class="skill-chip">Tecnomatix</span></div>
         <div class="project-links">
-          <a href="project-digital-mfg-blog.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://github.com/PixelHD543/BLOG-for-3D-Print"><i class="fab fa-github"></i> Blog Repo</a>
+          <a href="project-digital-mfg-blog.html">Full Project Page</a>
+          <a href="https://github.com/PixelHD543/BLOG-for-3D-Print">Blog Repo</a>
         </div>
       </div>
 
       <!-- Project 5: Crystal Serenity -->
       <div class="inner-card fade-up">
         <div class="project-img">
-          <img src="images/crystal-serenity/homepage.png" alt="Crystal Serenity holistic healing website homepage" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-hand-sparkles\' style=\'font-size:2rem;color:#F97316;\'></i><span style=\'margin-left:0.5rem;\'>📸 Website screenshot coming soon</span></div>'">
+          <img src="images/thumb-crystal-serenity.png" alt="Crystal Serenity Website" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-hand-sparkles\' style=\'font-size:2rem;color:#F97316;\'></i><span>📸 Crystal Serenity</span></div>'">
         </div>
         <h3><i class="fas fa-gem"></i> Crystal Serenity – Business Website</h3>
-        <p>Full business website for a holistic healing practice. 66 commits showing client collaboration, responsive design, GitHub Pages deployment.</p>
+        <p>Full business website for a holistic healing practice. 66 commits, responsive design, GitHub Pages deployment.</p>
         <div><span class="skill-chip">HTML/CSS/JS</span><span class="skill-chip">GitHub Pages</span><span class="skill-chip">66 commits</span></div>
         <div class="project-links">
-          <a href="project-grandma-website.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://pixelhd543.github.io/crystalserenity.org.uk/index.html"><i class="fas fa-globe"></i> Live Site</a>
-          <a href="https://github.com/PixelHD543/crystalserenity.org.uk"><i class="fab fa-github"></i> Repo</a>
+          <a href="project-grandma-website.html">Full Project Page</a>
+          <a href="https://pixelhd543.github.io/crystalserenity.org.uk/index.html">Live Site</a>
+          <a href="https://github.com/PixelHD543/crystalserenity.org.uk">GitHub Repo</a>
         </div>
       </div>
 
-      <!-- Project 6: Autonomous Farming (BEng Project) -->
+      <!-- Project 6: Autonomous Farming -->
       <div class="inner-card fade-up">
         <div class="project-img">
-          <img src="images/autonomous-farming/figure14-nitro-car.jpg" alt="1/8th scale nitro RC car with ESP32 and LiDAR" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-tractor\' style=\'font-size:2rem;color:#F97316;\'></i><span style=\'margin-left:0.5rem;\'>📸 Project photo coming soon</span></div>'">
+          <img src="images/thumb-autonomous.png" alt="Autonomous Farming System" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;color:#64748B;\'><i class=\'fas fa-tractor\' style=\'font-size:2rem;color:#F97316;\'></i><span>📸 Autonomous Farming</span></div>'">
         </div>
         <h3><i class="fas fa-tractor"></i> Autonomous Farming System</h3>
         <p>BEng individual project: Unreal Engine simulation + ESP32 control + LiDAR navigation. Modular autonomy for agricultural vehicles.</p>
-        <div><span class="skill-chip">Unreal Engine 5</span><span class="skill-chip">ESP32</span><span class="skill-chip">LiDAR</span><span class="skill-chip">C++</span></div>
+        <div><span class="skill-chip">Unreal Engine 5</span><span class="skill-chip">ESP32</span><span class="skill-chip">LiDAR</span></div>
         <div class="project-links">
-          <a href="project-autonomous-farming.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://github.com/PixelHD543"><i class="fab fa-github"></i> GitHub (Contact for access)</a>
+          <a href="project-autonomous-farming.html">Full Project Page</a>
+          <a href="https://github.com/PixelHD543">GitHub Profile</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Education Section -->
   <section id="education">
     <div class="section-title fade-up"><i class="fas fa-university"></i> Education</div>
     <div class="grid-2">
@@ -387,7 +381,6 @@
     </div>
   </section>
 
-  <!-- Experience Section -->
   <section id="experience">
     <div class="section-title fade-up"><i class="fas fa-briefcase"></i> Technical Experience</div>
     <div class="grid-2">
@@ -404,7 +397,6 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
   <section id="skills">
     <div class="section-title fade-up"><i class="fas fa-cogs"></i> Core Competencies</div>
     <div class="grid-2">
@@ -423,19 +415,16 @@
     </div>
   </section>
 
-  <!-- Contact Section with Form -->
   <section id="contact">
     <div class="inner-card fade-up" style="text-align: center;">
       <i class="fas fa-bolt" style="font-size: 2rem; color:#F97316;"></i>
       <h3>Let's collaborate on FPGA, embedded, or RF projects</h3>
-      
       <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="max-width: 550px; margin: 1.5rem auto; text-align: left;">
         <input type="email" name="email" placeholder="Your email address" required>
         <input type="text" name="subject" placeholder="Subject (e.g., FPGA Contract Opportunity)" required>
         <textarea name="message" rows="5" placeholder="Tell me about your project, role, or collaboration idea..." required></textarea>
         <button type="submit" class="btn-glow" style="border: none; cursor: pointer; width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Send Message</button>
       </form>
-      
       <p><i class="fas fa-envelope"></i> SamuelFoster543@gmail.com | <i class="fas fa-phone-alt"></i> +44 7578460400</p>
       <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
         <a href="https://github.com/PixelHD543" target="_blank" class="btn-glow" style="background: #1E293B; color: white; text-decoration: none;"><i class="fab fa-github"></i> GitHub</a>
