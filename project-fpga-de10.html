@@ -13,17 +13,21 @@
     .circuit-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 15% 30%, rgba(249,115,22,0.03) 2%, transparent 2.5%); pointer-events: none; z-index: -1; }
     .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
     .back-link { display: inline-flex; align-items: center; gap: 8px; background: rgba(249,115,22,0.15); padding: 0.5rem 1rem; border-radius: 40px; text-decoration: none; color: #FACC15; margin-bottom: 2rem; }
+    .back-link:hover { background: rgba(249,115,22,0.3); }
     .project-header h1 { font-size: 2.5rem; background: linear-gradient(135deg, #FFF, #FACC15, #F97316); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
     .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1rem; background: #1E293B; border-radius: 1rem; padding: 1rem; margin: 1rem 0; }
     .content-section { background: rgba(15,25,45,0.7); backdrop-filter: blur(8px); border-radius: 1.5rem; padding: 1.8rem; margin: 1.5rem 0; border-left: 3px solid #F97316; }
     .code-block { background: #0F172A; padding: 1rem; border-radius: 0.75rem; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.8rem; margin: 1rem 0; border: 1px solid #334155; }
-    .gallery { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
-    .gallery-img { flex: 1; min-width: 150px; background: #1E293B; border-radius: 1rem; padding: 1rem; text-align: center; border: 1px solid #334155; }
-    .gallery-img img { width: 100%; border-radius: 0.5rem; margin-top: 0.5rem; }
-    .gallery-img i { font-size: 2rem; color: #F97316; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.5rem 0; }
+    .gallery-item { flex: 1; min-width: 280px; background: #0F172A; border-radius: 1rem; padding: 1.2rem; border: 1px solid #334155; transition: transform 0.2s; }
+    .gallery-item:hover { transform: translateY(-3px); border-color: #F97316; }
+    .gallery-item img { width: 100%; border-radius: 0.5rem; margin: 0.75rem 0; border: 1px solid #1E293B; }
+    .gallery-item h3 { color: #FACC15; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .gallery-item p { font-size: 0.85rem; color: #94A3B8; }
+    .gallery-item i { font-size: 1.5rem; color: #F97316; margin-right: 0.5rem; }
     .btn-glow { background: linear-gradient(95deg, #F97316, #FDBA74); padding: 0.6rem 1.6rem; border-radius: 60px; font-weight: 700; color: #0A0C10; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-top: 0.5rem; }
     footer { margin-top: 3rem; text-align: center; background: rgba(5,10,20,0.8); border-radius: 1.5rem; padding: 1.2rem; font-size: 0.7rem; }
-    @media (max-width: 700px) { .container { padding: 1rem; } .project-header h1 { font-size: 1.8rem; } }
+    @media (max-width: 700px) { .container { padding: 1rem; } .project-header h1 { font-size: 1.8rem; } .gallery-item { min-width: 100%; } }
   </style>
 </head>
 <body>
@@ -65,53 +69,121 @@ Pin assignment → to DE10-Lite board's 7-segment displays</pre>
 
   <!-- SECTION 2: SCHEMATICS GALLERY -->
   <div class="content-section">
-    <h2><i class="fas fa-puzzle-piece"></i> Component Schematics</h2>
+    <h2><i class="fas fa-puzzle-piece"></i> Component Schematics – Building the ALU from Gates</h2>
     <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-microchip"></i><p><strong>Mux2</strong></p><img src="images/fpga/figure1-mux2-schematic.png" alt="Mux2 circuit diagram" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-microchip"></i><p><strong>Mux4</strong></p><img src="images/fpga/figure2-mux4-schematic.png" alt="Mux4 circuit diagram" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-microchip"></i><p><strong>Full Adder</strong></p><img src="images/fpga/figure3-full-adder-schematic.png" alt="Full adder circuit" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-microchip"></i><p><strong>1-bit ALU</strong></p><img src="images/fpga/figure4-1bit-alu-schematic.png" alt="1-bit ALU diagram" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-microchip"></i><p><strong>4-bit ALU</strong></p><img src="images/fpga/figure5-4bit-alu-schematic.png" alt="4-bit ALU block diagram" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-microchip"></i><p><strong>Pin Assignment</strong></p><img src="images/fpga/figure6-pin-assignment.png" alt="Pin-assigned ALU" onerror="this.style.display='none'"></div>
+      <div class="gallery-item">
+        <i class="fas fa-microchip"></i> <strong>Figure 1: Mux2 (2:1 Multiplexer)</strong>
+        <img src="images/fpga/figure1-mux2-schematic.png" alt="Mux2 circuit diagram" onerror="this.style.display='none'">
+        <p>A 2-to-1 multiplexer selects between ADD and SUBTRACT operations. When selector=0, the adder receives B directly (ADD). When selector=1, it receives inverted B (SUBTRACT via two's complement).</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-microchip"></i> <strong>Figure 2: Mux4 (4:1 Multiplexer)</strong>
+        <img src="images/fpga/figure2-mux4-schematic.png" alt="Mux4 circuit diagram" onerror="this.style.display='none'">
+        <p>A 4-to-1 multiplexer selects which operation the ALU performs: 00=AND, 01=XOR, 10=ADD, 11=SUBTRACT. This is the "operation selector" for the ALU.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-microchip"></i> <strong>Figure 3: Full Adder</strong>
+        <img src="images/fpga/figure3-full-adder-schematic.png" alt="Full adder circuit" onerror="this.style.display='none'">
+        <p>The fundamental calculation unit. Takes A, B, and Carry-In, produces Sum and Carry-Out. Multiple full adders are chained together to add multi-bit numbers.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-microchip"></i> <strong>Figure 4: 1-bit ALU</strong>
+        <img src="images/fpga/figure4-1bit-alu-schematic.png" alt="1-bit ALU diagram" onerror="this.style.display='none'">
+        <p>A complete 1-bit processor. Contains AND gate, XOR gate, full adder, and both multiplexers. Can perform any of the four operations on a single bit.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-microchip"></i> <strong>Figure 5: 4-bit ALU Block Diagram</strong>
+        <img src="images/fpga/figure5-4bit-alu-schematic.png" alt="4-bit ALU block diagram" onerror="this.style.display='none'">
+        <p>Four 1-bit ALUs connected in parallel with a ripple-carry chain. The Carry-Out from each bit feeds into the next bit's Carry-In, enabling multi-bit arithmetic.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-microchip"></i> <strong>Figure 6: Pin-Assigned ALU</strong>
+        <img src="images/fpga/figure6-pin-assignment.png" alt="Pin-assigned ALU" onerror="this.style.display='none'">
+        <p>The final ALU mapped to the DE10-Lite board's physical pins. Inputs come from switches, outputs drive the 7-segment displays.</p>
+      </div>
     </div>
   </div>
 
-  <!-- SECTION 3: SIMULATION WAVEFORMS - MUX -->
+  <!-- SECTION 3: MULTIPLEXER WAVEFORMS -->
   <div class="content-section">
-    <h2><i class="fas fa-chart-line"></i> Simulation Waveforms – Multiplexers</h2>
+    <h2><i class="fas fa-chart-line"></i> Simulation Waveforms – Multiplexer Verification</h2>
     <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>Mux2 Waveform</strong></p><img src="images/fpga/figure7-mux2-waveform.png" alt="Mux2 simulation" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>Mux4 Waveform</strong></p><img src="images/fpga/figure8-mux4-waveform.png" alt="Mux4 simulation" onerror="this.style.display='none'"></div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>Figure 7: Mux2 Simulation Waveform</strong>
+        <img src="images/fpga/figure7-mux2-waveform.png" alt="Mux2 simulation" onerror="this.style.display='none'">
+        <p>When selector=0, output mirrors Input 0. When selector=1, output mirrors Input 1. Verified all four input combinations.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>Figure 8: Mux4 Simulation Waveform</strong>
+        <img src="images/fpga/figure8-mux4-waveform.png" alt="Mux4 simulation" onerror="this.style.display='none'">
+        <p>Output mirrors the selected input based on the two selector bits (00=Input0, 01=Input1, 10=Input2, 11=Input3). Verified all 16 combinations.</p>
+      </div>
     </div>
   </div>
 
-  <!-- SECTION 4: SIMULATION WAVEFORMS - 1-bit ALU -->
+  <!-- SECTION 4: 1-BIT ALU WAVEFORMS -->
   <div class="content-section">
     <h2><i class="fas fa-chart-line"></i> Simulation Waveforms – 1-bit ALU Functions</h2>
     <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>AND Gate</strong></p><img src="images/fpga/figure9-and-waveform.png" alt="AND gate waveform" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>XOR Gate</strong></p><img src="images/fpga/figure10-xor-waveform.png" alt="XOR gate waveform" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>ADD (with carry)</strong></p><img src="images/fpga/figure11-add-waveform.png" alt="ADD waveform with carry" onerror="this.style.display='none'"></div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>Figure 9: AND Function</strong>
+        <img src="images/fpga/figure9-and-waveform.png" alt="AND gate waveform" onerror="this.style.display='none'">
+        <p>Output = 1 only when both A=1 AND B=1. Otherwise output = 0. Verified all four input combinations.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>Figure 10: XOR Function</strong>
+        <img src="images/fpga/figure10-xor-waveform.png" alt="XOR gate waveform" onerror="this.style.display='none'">
+        <p>Output = 1 when A ≠ B (0,1 or 1,0). Output = 0 when A = B (0,0 or 1,1). Exclusive OR is the "difference detector".</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>Figure 11: ADD Function with Carry-Out</strong>
+        <img src="images/fpga/figure11-add-waveform.png" alt="ADD waveform with carry" onerror="this.style.display='none'">
+        <p>Binary addition: 1+0=1 (Sum=1, Carry=0), 1+1=0 (Sum=0, Carry=1). The yellow line shows the Carry-Out to the next bit.</p>
+      </div>
     </div>
   </div>
 
-  <!-- SECTION 5: SIMULATION WAVEFORMS - 4-bit ALU -->
+  <!-- SECTION 5: 4-BIT ALU WAVEFORMS -->
   <div class="content-section">
     <h2><i class="fas fa-chart-line"></i> Simulation Waveforms – 4-bit ALU Functions</h2>
     <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>4-bit AND</strong></p><img src="images/fpga/figure12-4bit-and.png" alt="4-bit AND waveform" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>4-bit ADD</strong></p><img src="images/fpga/figure13-4bit-add.png" alt="4-bit ADD waveform" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>4-bit SUB</strong></p><img src="images/fpga/figure14-4bit-sub.png" alt="4-bit SUB waveform" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>4-bit XOR</strong></p><img src="images/fpga/figure15-4bit-xor.png" alt="4-bit XOR waveform" onerror="this.style.display='none'"></div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>Figure 12: 4-bit AND</strong>
+        <img src="images/fpga/figure12-4bit-and.png" alt="4-bit AND waveform" onerror="this.style.display='none'">
+        <p>Bitwise AND operation. Left: 0100 (4) AND 0100 (4) = 0100 (4). Right: 0001 (1) AND 0100 (4) = 0000 (0).</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>Figure 13: 4-bit ADD</strong>
+        <img src="images/fpga/figure13-4bit-add.png" alt="4-bit ADD waveform" onerror="this.style.display='none'">
+        <p>Binary addition across 4 bits. Left: 0100 (4) + 0100 (4) = 1000 (8). Right: 0100 (4) + 1100 (12) = 0000 with carry-out (16 in decimal).</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>Figure 14: 4-bit SUBTRACT</strong>
+        <img src="images/fpga/figure14-4bit-sub.png" alt="4-bit SUB waveform" onerror="this.style.display='none'">
+        <p>Subtraction using two's complement. Left: 0100 (4) - 0100 (4) = 0000 (0). Right: 0010 (2) - 0100 (4) = 1110 (14, representing -2 in two's complement).</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>Figure 15: 4-bit XOR</strong>
+        <img src="images/fpga/figure15-4bit-xor.png" alt="4-bit XOR waveform" onerror="this.style.display='none'">
+        <p>Bitwise XOR operation. Left: 0001 (1) XOR 0001 (1) = 0000 (0). Right: 0110 (6) XOR 1110 (14) = 1000 (8).</p>
+      </div>
     </div>
   </div>
 
   <!-- SECTION 6: REGISTER FILE -->
   <div class="content-section">
-    <h2><i class="fas fa-database"></i> Register File – Read/Write Operations</h2>
+    <h2><i class="fas fa-database"></i> Register File – CPU Memory Operations</h2>
     <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-database"></i><p><strong>Register Write</strong></p><img src="images/fpga/figure16-register-write.png" alt="Register write waveform" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-database"></i><p><strong>Register Read</strong></p><img src="images/fpga/figure17-register-read.png" alt="Register read waveform" onerror="this.style.display='none'"></div>
+      <div class="gallery-item">
+        <i class="fas fa-database"></i> <strong>Figure 16: Register Write Operation</strong>
+        <img src="images/fpga/figure16-register-write.png" alt="Register write waveform" onerror="this.style.display='none'">
+        <p>Demonstrates writing data to registers. Only one register can be written at a time. The register holds the data value after the write enable signal goes low.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-database"></i> <strong>Figure 17: Register Read Operation</strong>
+        <img src="images/fpga/figure17-register-read.png" alt="Register read waveform" onerror="this.style.display='none'">
+        <p>Two registers can be read simultaneously – shown by outputs 1100 (register 12) and 1000 (register 8). This dual-read capability is essential for CPU instruction execution.</p>
+      </div>
     </div>
   </div>
 
@@ -119,8 +191,16 @@ Pin assignment → to DE10-Lite board's 7-segment displays</pre>
   <div class="content-section">
     <h2><i class="fas fa-video"></i> Physical Deployment – DE10-Lite Board</h2>
     <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-microchip"></i><p><strong>DE10-Lite Running</strong></p><img src="images/fpga/board-photo.jpg" alt="DE10-Lite board running ALU" onerror="this.style.display='none'"></div>
-      <div class="gallery-img"><i class="fas fa-video"></i><p><strong>Demo Video</strong></p><img src="images/fpga/video-thumbnail.jpg" alt="Video thumbnail" onerror="this.style.display='none'"></div>
+      <div class="gallery-item">
+        <i class="fas fa-microchip"></i> <strong>DE10-Lite Board Running the ALU</strong>
+        <img src="images/fpga/board-photo.jpg" alt="DE10-Lite board running ALU" onerror="this.style.display='none'">
+        <p>The completed 4-bit ALU deployed to physical hardware. Inputs are set using the board's switches, outputs are displayed on the 7-segment displays.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-video"></i> <strong>Video Demo – Working ALU</strong>
+        <img src="images/fpga/video-thumbnail.jpg" alt="Video thumbnail" onerror="this.style.display='none'">
+        <p>Full demonstration video showing the ALU performing AND, XOR, ADD, and SUBTRACT operations on the DE10-Lite board. <a href="#" style="color:#FACC15;">Contact me for access</a>.</p>
+      </div>
     </div>
   </div>
 
@@ -134,6 +214,8 @@ Pin assignment → to DE10-Lite board's 7-segment displays</pre>
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Quartus Prime</span>
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Ripple-Carry Adder</span>
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Register File Architecture</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">FPGA Pin Assignment</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">7-Segment Display Driver</span>
     </div>
   </div>
 
@@ -141,7 +223,7 @@ Pin assignment → to DE10-Lite board's 7-segment displays</pre>
   <div class="content-section">
     <h2><i class="fas fa-link"></i> Resources</h2>
     <p>🔗 <strong>GitHub:</strong> <a href="https://github.com/PixelHD543" style="color:#FACC15;" target="_blank">github.com/PixelHD543</a><br>
-    🔗 <strong>Full Report:</strong> Available on request – contact me for the complete 25-page academic report<br>
+    🔗 <strong>Full Report:</strong> Available on request – contact me for the complete academic report<br>
     🔗 <strong>Portfolio Homepage:</strong> <a href="index.html" style="color:#FACC15;">Back to main portfolio</a></p>
   </div>
 
