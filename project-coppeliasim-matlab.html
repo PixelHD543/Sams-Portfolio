@@ -20,6 +20,7 @@
     .code-block { background: #0F172A; padding: 1rem; border-radius: 0.75rem; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.8rem; margin: 1rem 0; border: 1px solid #334155; }
     .gallery { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
     .gallery-img { flex: 1; min-width: 200px; background: #1E293B; border-radius: 1rem; padding: 1rem; text-align: center; border: 1px solid #334155; }
+    .gallery-img img { width: 100%; border-radius: 0.5rem; margin-top: 0.5rem; }
     .gallery-img i { font-size: 2rem; color: #F97316; }
     .performance-card { background: linear-gradient(135deg, #1E293B, #0F172A); border-radius: 1rem; padding: 1rem; margin: 1rem 0; border-left: 4px solid #F97316; }
     .btn-glow { background: linear-gradient(95deg, #F97316, #FDBA74); padding: 0.6rem 1.6rem; border-radius: 60px; font-weight: 700; color: #0A0C10; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-top: 0.5rem; }
@@ -35,34 +36,55 @@
   <div class="project-header">
     <h1>Automated Robotic Pick-and-Place Cell – Phones-R-Us</h1>
     <div class="specs-grid">
-      <div><i class="fas fa-robot"></i> <strong>Robot:</strong> Universal Robots 7DOF (simulated)</div>
+      <div><i class="fas fa-robot"></i> <strong>Robot:</strong> Universal Robots UR7DOF (simulated)</div>
       <div><i class="fas fa-chart-line"></i> <strong>Simulation:</strong> CoppeliaSim EDU 4.10</div>
       <div><i class="fas fa-calculator"></i> <strong>Kinematics:</strong> MATLAB DH + IK</div>
       <div><i class="fas fa-shield-alt"></i> <strong>Safety:</strong> ISO 10218-1 compliant</div>
     </div>
   </div>
 
-  <!-- ===== SECTION 1: PROJECT OVERVIEW ===== -->
+  <!-- SECTION 1: PROJECT OVERVIEW -->
   <div class="content-section">
     <h2><i class="fas fa-briefcase"></i> Project Overview – Phones-R-Us</h2>
     <p>Phones-R-Us, a mobile phone manufacturer, needed to automate a manual pick-and-place station to handle <strong>mPhone 26 units</strong> in three colour variants: Crimson Red, Obsidian Black, and Quantum Blue. The target throughput was <strong>one phone every two seconds</strong>.</p>
-    <p><strong>Key requirements:</strong></p>
-    <ul style="margin-left: 1.5rem;">
-      <li>✅ 5+ DOF robot for future flexibility</li>
-      <li>✅ Colour-based sorting (red/black/blue boxes)</li>
-      <li>✅ Defective unit rejection bin</li>
-      <li>✅ Full box moving capability (63 phones ≈ 13kg)</li>
-      <li>✅ Collaborative operation preferred (no enclosure)</li>
-      <li>✅ 3m × 3m workspace constraint</li>
-    </ul>
+    <div class="performance-card">
+      <h3>Key Requirements Met</h3>
+      <ul>
+        <li>✅ 5+ DOF robot for future flexibility</li>
+        <li>✅ Colour-based sorting (red/black/blue boxes)</li>
+        <li>✅ Defective unit rejection bin</li>
+        <li>✅ Full box moving capability (63 phones ≈ 13kg)</li>
+        <li>✅ Collaborative operation (no enclosure)</li>
+        <li>✅ 3m × 3m workspace constraint</li>
+      </ul>
+    </div>
   </div>
 
-  <!-- ===== SECTION 2: SIMULATION ARCHITECTURE ===== -->
+  <!-- SECTION 2: WORKCELL LAYOUT -->
   <div class="content-section">
-    <h2><i class="fas fa-microchip"></i> CoppeliaSim Simulation – State Machine & Lua Control</h2>
-    <p>A complete functional simulation was developed in CoppeliaSim EDU 4.10, implementing an 8-state finite state machine for the robot controller.</p>
-    
-    <h3>State Machine Design</h3>
+    <h2><i class="fas fa-cube"></i> Workcell Layout – CoppeliaSim</h2>
+    <div class="gallery">
+      <div class="gallery-img">
+        <i class="fas fa-cube"></i>
+        <p><strong>Isometric Workcell View</strong></p>
+        <img src="images/coppeliasim/figure3-1-workcell.png" alt="CoppeliaSim workcell isometric view" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-img">
+        <i class="fas fa-desktop"></i>
+        <p><strong>Operator UI Panel</strong></p>
+        <img src="images/coppeliasim/figure4-2-ui-panel.png" alt="UI control panel" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-img">
+        <i class="fas fa-box"></i>
+        <p><strong>Box Filled (63 phones)</strong></p>
+        <img src="images/coppeliasim/figure4-4-box-filled.png" alt="Box with 63 phones in 3x3x7 pattern" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: STATE MACHINE -->
+  <div class="content-section">
+    <h2><i class="fas fa-microchip"></i> State Machine & Lua Control</h2>
     <div class="code-block">
       <pre style="margin:0;">
 State 0: Idle – waiting for phone
@@ -75,89 +97,41 @@ State 6: Move to place position (colour-dependent)
 State 7: Release phone (vacuum off)
 State 8: Move to retreat point (place) → return to State 0</pre>
     </div>
-
-    <h3>Waypoint-Based Motion (Collision-Free)</h3>
     <div class="code-block">
       <pre style="margin:0;">
--- Waypoint sequence for pick operation
-waypoints = {
-  {x = 0.800, y = 1.200, z = 0.850},  -- Approach
-  {x = 0.800, y = 1.200, z = 0.700},  -- Pick
-  {x = 0.800, y = 1.200, z = 0.900},  -- Retreat
-}
-
-function moveThroughWaypoints(waypoints)
-  for i, wp in ipairs(waypoints) do
-    setGoalPosition(wp)
-    while not stepToward() do
-      simIK.handleGroup(ikEnv, ikGroup)
-    end
-  end
-end</pre>
-    </div>
-
-    <h3>Colour Detection & Routing</h3>
-    <div class="code-block">
-      <pre style="margin:0;">
+-- Colour detection and routing
 function getPhoneColour(r, g, b)
-  -- Crimson Red: high red, low green and blue
   if r > 0.7 and g < 0.3 and b < 0.3 then return "red" end
-  -- Obsidian Black: very dark
   if r < 0.2 and g < 0.2 and b < 0.2 then return "black" end
-  -- Quantum Blue: high blue
   if b > 0.5 and r < 0.4 and g < 0.4 then return "blue" end
   return "reject"
-end
-
--- Route to correct box
-if colour == "red" then
-  placePos = redBoxPos
-elseif colour == "black" then
-  placePos = blackBoxPos
-elseif colour == "blue" then
-  placePos = blueBoxPos
-else
-  placePos = rejectBinPos
 end</pre>
     </div>
   </div>
 
-  <!-- ===== SECTION 3: DUAL-MODE GRIPPER & BOX MOVING ===== -->
+  <!-- SECTION 4: MATLAB KINEMATICS -->
   <div class="content-section">
-    <h2><i class="fas fa-hand-peace"></i> Dual-Mode Gripper – Phones (200g) + Full Boxes (13kg)</h2>
-    <p>The intermediate specification required "proven capability to pick and place phones AND move full boxes". A dual-mode gripper was designed:</p>
-    
+    <h2><i class="fas fa-chart-line"></i> MATLAB Kinematic Analysis</h2>
     <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-mobile-alt"></i><p><strong>Phone Mode:</strong> Vacuum cups<br>200g payload<br>Silicone non-marring</p></div>
-      <div class="gallery-img"><i class="fas fa-box"></i><p><strong>Box Mode:</strong> Parallel jaws<br>13kg payload<br>Spring-engaged fail-safe</p></div>
+      <div class="gallery-img">
+        <i class="fas fa-chart-area"></i>
+        <p><strong>Workspace Visualisation</strong></p>
+        <img src="images/coppeliasim/figure5-1-workspace.png" alt="MATLAB workspace plot" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-img">
+        <i class="fas fa-chart-line"></i>
+        <p><strong>IK Solver Convergence</strong></p>
+        <img src="images/coppeliasim/figure5-5-ik-convergence.png" alt="IK solver convergence plot" onerror="this.style.display='none'">
+      </div>
+      <div class="gallery-img">
+        <i class="fas fa-robot"></i>
+        <p><strong>Robot at Pick Position</strong></p>
+        <img src="images/coppeliasim/figure-robot-config.png" alt="Robot configuration at pick position" onerror="this.style.display='none'">
+      </div>
     </div>
-
-    <h3>Box Moving Sequence (Lua)</h3>
     <div class="code-block">
       <pre style="margin:0;">
-function moveFullBox(boxColour)
-  setGripperMode("box")  -- Switch to parallel jaws
-  moveToPosition({boxPos.x, boxPos.y, boxPos.z + 0.1})  -- Approach
-  moveToPosition(boxPos)  -- Pick position
-  closeGripper()
-  waitForGripConfirmation()
-  moveToPosition({boxPos.x, boxPos.y, boxPos.z + 0.2})  -- Lift
-  moveToPosition(palletPos)  -- Move to collection area
-  openGripper()
-  setGripperMode("phone")  -- Switch back
-end</pre>
-    </div>
-  </div>
-
-  <!-- ===== SECTION 4: MATLAB KINEMATICS ===== -->
-  <div class="content-section">
-    <h2><i class="fas fa-chart-line"></i> MATLAB Kinematic Analysis – DH Parameters & Workspace</h2>
-    <p>Denavit-Hartenberg parameters were derived for the 7DOF robot and validated against manufacturer specifications.</p>
-    
-    <h3>Forward Kinematics Validation</h3>
-    <div class="code-block">
-      <pre style="margin:0;">
-% DH Parameters for UR7DOF (simplified)
+% Denavit-Hartenberg Parameters for UR7DOF
 DH = [
   0,   0.1273,   0,     pi/2;   % J1
   -pi/2, 0,      -0.612, 0;     % J2
@@ -167,66 +141,13 @@ DH = [
   0,   0.0922,   0,     0;      % J6
 ];
 
-% Home position (all joints = 0°)
-% MATLAB output: (0.612, 0.000, 0.928) m
-% Manufacturer spec: (0.612, 0, 0.928) m
-% Error: 0.000 m – VERIFIED</pre>
-    </div>
-
-    <h3>Inverse Kinematics – Pick & Place Poses</h3>
-    <div class="specs-grid">
-      <div><strong>Pick Pose</strong><br>X=0.80, Y=1.20, Z=0.70<br>J1=58.9°, J2=57.0°, J3=81.5°</div>
-      <div><strong>Red Box</strong><br>X=1.20, Y=0.80, Z=0.30<br>J1=20.8°, J2=52.7°, J3=51.5°</div>
-      <div><strong>Black Box</strong><br>X=1.20, Y=0.00, Z=0.30<br>J1=33.9°, J2=37.8°, J3=18.3°</div>
-      <div><strong>Blue Box</strong><br>X=1.20, Y=-0.80, Z=0.30<br>J1=3.9°, J2=57.8°, J3=61.6°</div>
-    </div>
-
-    <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-chart-area"></i><p><strong>Figure 5.1:</strong> Workspace visualisation – all targets within reach</p><small>📸 Placeholder – add MATLAB plot</small></div>
-      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>Figure 5.5:</strong> IK solver convergence</p><small>📸 Placeholder – add convergence plot</small></div>
+% Home position verification: (0.612, 0, 0.928)m – matches manufacturer spec</pre>
     </div>
   </div>
 
-  <!-- ===== SECTION 5: SAFETY ASSESSMENT ===== -->
+  <!-- SECTION 5: PERFORMANCE -->
   <div class="content-section">
-    <h2><i class="fas fa-shield-alt"></i> Safety Assessment – ISO 10218-1 Compliant</h2>
-    <p>A systematic hazard analysis identified 7 primary hazards. Each was mitigated following the hierarchy of controls.</p>
-    
-    <div class="performance-card">
-      <h3>Key Safety Features Implemented in Simulation</h3>
-      <ul>
-        <li><strong>Light curtain (simulated):</strong> Perimeter safety zone – robot stops within 20ms</li>
-        <li><strong>Speed-limited zones:</strong> 250 mm/s within 500mm of operator</li>
-        <li><strong>Emergency stops:</strong> Three locations (operator station, robot controller, conveyor)</li>
-        <li><strong>Fail-safe gripper:</strong> Spring-engaged jaws (air-released) for box mode</li>
-        <li><strong>Vacuum confirmation sensor:</strong> Verifies grip before motion</li>
-      </ul>
-    </div>
-
-    <div class="code-block">
-      <pre style="margin:0;">
--- Speed-limited zone monitoring (Lua)
-function checkSafetyZones(tipPos, operatorPos)
-  local dist = distance(tipPos, operatorPos)
-  if dist < 0.5 then
-    sim.setIntegerSignal("emergency_stop", 1)
-    sim.addStatusbarMessage("EMERGENCY STOP: Operator too close")
-  elseif dist < 1.0 then
-    sim.setFloatSignal("robot_speed_limit", 0.25)  -- 250 mm/s
-    sim.addStatusbarMessage("WARNING: Speed reduced")
-  else
-    sim.setFloatSignal("robot_speed_limit", 1.0)
-  end
-end</pre>
-    </div>
-
-    <p><strong>Standards Compliance:</strong> ISO 10218-1:2011, ISO 13849-1:2015 (PLr = d), PUWER 1998, UKCA marking requirements.</p>
-  </div>
-
-  <!-- ===== SECTION 6: PERFORMANCE EVALUATION ===== -->
-  <div class="content-section">
-    <h2><i class="fas fa-chart-simple"></i> Performance Evaluation – Cycle Time Analysis</h2>
-    
+    <h2><i class="fas fa-chart-simple"></i> Performance Evaluation</h2>
     <div class="performance-card">
       <h3>Cycle Time Breakdown (per phone)</h3>
       <ul>
@@ -238,59 +159,24 @@ end</pre>
       </ul>
       <p><strong>Target was 2.0 seconds – gap of 0.8 seconds (28% shortfall).</strong></p>
     </div>
-
-    <h3>Critical Reflection – Why the Gap?</h3>
-    <ul>
-      <li><strong>Sequential operation:</strong> Full pick-place-return cycle required for each phone</li>
-      <li><strong>Waypoint-based motion:</strong> Approach/retreat waypoints add ~0.8s per cycle</li>
-      <li><strong>Conveyor spacing:</strong> Simulated 5s auto-spawn is placeholder for real production</li>
-    </ul>
-
-    <h3>Proposed Improvements</h3>
-    <div class="specs-grid">
-      <div><i class="fas fa-double"></i> <strong>Dual picking</strong><br>50% reduction<br>Cost: High (£30k)</div>
-      <div><i class="fas fa-boxes"></i> <strong>Parallel box handling</strong><br>32% reduction<br>Cost: Medium (£15k)</div>
-      <div><i class="fas fa-chart-line"></i> <strong>Optimised motion planning</strong><br>18% reduction<br>Cost: Low (£5k)</div>
-    </div>
   </div>
 
-  <!-- ===== SECTION 7: PESTLE & ROI ANALYSIS ===== -->
+  <!-- SECTION 6: VIDEO DEMO -->
   <div class="content-section">
-    <h2><i class="fas fa-chart-pie"></i> PESTLE & ROI Analysis</h2>
-    
-    <div class="performance-card">
-      <h3>Financial Summary</h3>
-      <ul>
-        <li><strong>Capital Expenditure:</strong> £60,000 (robot, gripper, safety, installation)</li>
-        <li><strong>Annual Savings:</strong> £45,000 (2 operators @ £20k + reduced waste)</li>
-        <li><strong>Payback Period:</strong> 16 months</li>
-        <li><strong>5-Year ROI:</strong> £165,000</li>
-      </ul>
-    </div>
-
-    <p><strong>Key PESTLE Insights:</strong></p>
-    <ul>
-      <li><strong>Political:</strong> "Made Smarter" grants available – up to £20k funding</li>
-      <li><strong>Social:</strong> Retraining programme for displaced operators → higher-value roles</li>
-      <li><strong>Technological:</strong> Future vision integration path (AI camera for defect detection)</li>
-      <li><strong>Environmental:</strong> 0.5kW average consumption, recyclable gripper jaws</li>
-    </ul>
-  </div>
-
-  <!-- ===== SECTION 8: SIMULATION UI & OPERATOR INTERFACE ===== -->
-  <div class="content-section">
-    <h2><i class="fas fa-desktop"></i> Operator Interface – Full Simulation Control</h2>
+    <h2><i class="fas fa-video"></i> Simulation Demo</h2>
     <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>Figure 4.2:</strong> UI Control Panel</p><small>📸 Placeholder – add CoppeliaSim UI screenshot</small></div>
-      <div class="gallery-img"><i class="fas fa-cube"></i><p><strong>Figure 3.1:</strong> Isometric workcell view</p><small>📸 Placeholder – add simulation screenshot</small></div>
-      <div class="gallery-img"><i class="fas fa-box"></i><p><strong>Figure 4.4:</strong> Box with 63 phones (3×3×7)</p><small>📸 Placeholder – add box fill screenshot</small></div>
+      <div class="gallery-img">
+        <i class="fas fa-video"></i>
+        <p><strong>Simulation Recording</strong></p>
+        <img src="images/coppeliasim/simulation-video-thumb.jpg" alt="Simulation video thumbnail" onerror="this.style.display='none'">
+      </div>
     </div>
-    <p><strong>UI Controls:</strong> Colour buttons (manual spawn), robot speed slider, conveyor speed slider, auto-spawn toggle, emergency stop, reset.</p>
+    <p style="margin-top: 0.5rem;">📹 <strong>Video:</strong> Full simulation run showing colour sorting, pick-and-place, and box moving. <a href="#" style="color:#FACC15;">Contact me for access to the recording</a>.</p>
   </div>
 
-  <!-- ===== SECTION 9: SKILLS DEMONSTRATED ===== -->
+  <!-- SECTION 7: SKILLS -->
   <div class="content-section">
-    <h2><i class="fas fa-chalkboard-user"></i> Skills Demonstrated to Employers</h2>
+    <h2><i class="fas fa-chalkboard-user"></i> Skills Demonstrated</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">CoppeliaSim (V-REP)</span>
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Lua Scripting</span>
@@ -298,28 +184,16 @@ end</pre>
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Denavit-Hartenberg Parameters</span>
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Forward/Inverse Kinematics</span>
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">State Machine Design</span>
-      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Safety (ISO 10218-1)</span>
-      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Risk Assessment (5×5 Matrix)</span>
-      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">PESTLE Analysis</span>
-      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">ROI / Payback Calculation</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">ISO 10218-1 Safety</span>
     </div>
-    <p style="margin-top: 1rem;"><strong>For industrial robotics/automation roles:</strong> This project proves I can design, simulate, and safety-assess a complete robotic workcell – from kinematics to cycle time optimisation.</p>
   </div>
 
-  <!-- ===== SECTION 10: GITHUB & REPORT ===== -->
+  <!-- SECTION 8: LINKS -->
   <div class="content-section">
-    <h2><i class="fab fa-github"></i> GitHub Repository & Full Report</h2>
-    <p>The complete project – CoppeliaSim scene files, MATLAB scripts, and full 25-page report – is available.</p>
-    <div class="code-block">
-      <pre style="margin:0;">
-industrial-robotics-cell/
-├── coppeliaSim/    # .ttt scene file + Lua scripts
-├── matlab/         # DH parameters, FK/IK, workspace plot
-├── docs/           # Full report (PDF, 25 pages)
-└── README.md       # Project overview</pre>
-    </div>
-    <a href="#" class="btn-glow"><i class="fab fa-github"></i> View Repository (Coming Soon)</a>
-    <a href="#" class="btn-glow" style="background: #1E293B; color: white; margin-left: 0.5rem;"><i class="fas fa-file-pdf"></i> Download Full Report (25 pages)</a>
+    <h2><i class="fas fa-link"></i> Resources</h2>
+    <p>🔗 <strong>GitHub:</strong> <a href="https://github.com/PixelHD543" style="color:#FACC15;" target="_blank">github.com/PixelHD543</a> – MATLAB scripts and CoppeliaSim scene files available on request<br>
+    🔗 <strong>Full Report:</strong> 25-page academic report available – <a href="#" style="color:#FACC15;">contact me</a> for access<br>
+    🔗 <strong>Portfolio Homepage:</strong> <a href="index.html" style="color:#FACC15;">Back to main portfolio</a></p>
   </div>
 
   <footer>
