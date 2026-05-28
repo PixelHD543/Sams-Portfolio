@@ -194,6 +194,17 @@
       border-left: 2px solid #F97316;
       font-family: monospace;
     }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #E2E8F0;
+      font-family: inherit;
+      margin-bottom: 1rem;
+    }
+    .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: #F97316; }
     footer {
       margin-top: 3rem;
       text-align: center;
@@ -278,7 +289,7 @@
     </div>
   </div>
 
-  <!-- ========== PROJECTS SECTION – ALL 6 PROJECTS ========== -->
+  <!-- PROJECTS SECTION – All internal links (same tab) -->
   <section id="projects">
     <div class="section-title fade-up"><i class="fas fa-project-diagram"></i> Featured Engineering Projects</div>
     
@@ -292,12 +303,12 @@
           </div>
         </div>
         <h3><i class="fas fa-dragon"></i> Dino Duel TCG – Browser Card Game</h3>
-        <p>Fully playable trading card game with ability system, energy costs, and 42 commits of Git history. Deployed via GitHub Pages.</p>
-        <div><span class="skill-chip">JavaScript ES6</span><span class="skill-chip">HTML5/CSS3</span><span class="skill-chip">Git (42 commits)</span><span class="skill-chip">GitHub Pages</span></div>
+        <p>Fully playable trading card game with ability system, energy costs, and 42 commits of Git history.</p>
+        <div><span class="skill-chip">JavaScript ES6</span><span class="skill-chip">HTML5/CSS3</span><span class="skill-chip">Git (42 commits)</span></div>
         <div class="project-links">
-          <a href="project-dino-game.html" target="_blank"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://pixelhd543.github.io/DinoGame/" target="_blank"><i class="fas fa-play"></i> Live Demo</a>
-          <a href="https://github.com/PixelHD543/DinoGame" target="_blank"><i class="fab fa-github"></i> Repo (42 commits)</a>
+          <a href="project-dino-game.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
+          <a href="https://pixelhd543.github.io/DinoGame/"><i class="fas fa-play"></i> Live Demo</a>
+          <a href="https://github.com/PixelHD543/DinoGame"><i class="fab fa-github"></i> Repo</a>
         </div>
       </div>
 
@@ -310,11 +321,11 @@
           </div>
         </div>
         <h3><i class="fab fa-intel"></i> FPGA Development – Quartus & DE10-Nano</h3>
-        <p>Verilog HDL for real-time signal processing, custom RISC-V soft-core, and hardware acceleration on Terasic DE10-Nano (Cyclone V).</p>
-        <div><span class="skill-chip">Intel Quartus</span><span class="skill-chip">Verilog/VHDL</span><span class="skill-chip">DE10-Nano</span><span class="skill-chip">RISC-V</span></div>
+        <p>Verilog HDL for real-time signal processing, custom RISC-V soft-core, and hardware acceleration.</p>
+        <div><span class="skill-chip">Intel Quartus</span><span class="skill-chip">Verilog/VHDL</span><span class="skill-chip">DE10-Nano</span></div>
         <div class="project-links">
-          <a href="project-fpga-de10.html" target="_blank"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://github.com/PixelHD543" target="_blank"><i class="fab fa-github"></i> GitHub Profile</a>
+          <a href="project-fpga-de10.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
+          <a href="https://github.com/PixelHD543"><i class="fab fa-github"></i> GitHub Profile</a>
         </div>
       </div>
 
@@ -327,11 +338,11 @@
           </div>
         </div>
         <h3><i class="fas fa-chart-line"></i> CoppeliaSim Robotics – MATLAB Integration</h3>
-        <p>Physics-based robot arm simulation with custom MATLAB control algorithms: inverse kinematics, path planning, real-time visualisation.</p>
+        <p>Physics-based robot arm simulation with custom MATLAB control algorithms.</p>
         <div><span class="skill-chip">CoppeliaSim</span><span class="skill-chip">MATLAB</span><span class="skill-chip">IK/PID</span></div>
         <div class="project-links">
-          <a href="project-coppeliasim-matlab.html" target="_blank"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://github.com/PixelHD543" target="_blank"><i class="fab fa-github"></i> MATLAB Scripts</a>
+          <a href="project-coppeliasim-matlab.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
+          <a href="https://github.com/PixelHD543"><i class="fab fa-github"></i> MATLAB Scripts</a>
         </div>
       </div>
     </div>
@@ -346,11 +357,11 @@
           </div>
         </div>
         <h3><i class="fas fa-blog"></i> Digital Manufacturing Blog</h3>
-        <p>Technical writing on additive manufacturing, digital twins, and QR-based traceability. Built from scratch with HTML/CSS, version-controlled on GitHub.</p>
-        <div><span class="skill-chip">Digital Thread</span><span class="skill-chip">QR Systems</span><span class="skill-chip">Tech Writing</span></div>
+        <p>Technical writing on additive manufacturing, digital twins, and QR-based traceability.</p>
+        <div><span class="skill-chip">Digital Thread</span><span class="skill-chip">QR Systems</span></div>
         <div class="project-links">
-          <a href="project-digital-mfg-blog.html" target="_blank"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://github.com/PixelHD543/BLOG-for-3D-Print" target="_blank"><i class="fab fa-github"></i> Blog Repo</a>
+          <a href="project-digital-mfg-blog.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
+          <a href="https://github.com/PixelHD543/BLOG-for-3D-Print"><i class="fab fa-github"></i> Blog Repo</a>
         </div>
       </div>
 
@@ -363,12 +374,12 @@
           </div>
         </div>
         <h3><i class="fas fa-gem"></i> Crystal Serenity – Business Website</h3>
-        <p>Full business website for a holistic healing practice. Built with HTML/CSS/JS, hosted on GitHub Pages. 66 commits showing client collaboration.</p>
-        <div><span class="skill-chip">HTML/CSS/JS</span><span class="skill-chip">GitHub Pages</span><span class="skill-chip">Responsive</span></div>
+        <p>Full business website for a holistic healing practice. 66 commits showing client collaboration.</p>
+        <div><span class="skill-chip">HTML/CSS/JS</span><span class="skill-chip">GitHub Pages</span></div>
         <div class="project-links">
-          <a href="project-grandma-website.html" target="_blank"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
-          <a href="https://pixelhd543.github.io/crystalserenity.org.uk/index.html" target="_blank"><i class="fas fa-globe"></i> Live Site</a>
-          <a href="https://github.com/PixelHD543/crystalserenity.org.uk" target="_blank"><i class="fab fa-github"></i> Repo (66 commits)</a>
+          <a href="project-grandma-website.html"><i class="fas fa-external-link-alt"></i> Full Project Page</a>
+          <a href="https://pixelhd543.github.io/crystalserenity.org.uk/index.html"><i class="fas fa-globe"></i> Live Site</a>
+          <a href="https://github.com/PixelHD543/crystalserenity.org.uk"><i class="fab fa-github"></i> Repo</a>
         </div>
       </div>
 
@@ -381,11 +392,11 @@
           </div>
         </div>
         <h3><i class="fas fa-shield-alt"></i> NATO Flood Early Warning System</h3>
-        <p>Custom ARM Cortex-M4F RTOS, LoRaWAN mesh network, free-space optics backup, AI drone coordination. PCB designed in KiCad.</p>
-        <div><span class="skill-chip">FreeRTOS</span><span class="skill-chip">LoRaWAN</span><span class="skill-chip">KiCad</span><span class="skill-chip">ARM Cortex-M4</span></div>
+        <p>Custom ARM Cortex-M4F RTOS, LoRaWAN mesh network, free-space optics backup.</p>
+        <div><span class="skill-chip">FreeRTOS</span><span class="skill-chip">LoRaWAN</span><span class="skill-chip">KiCad</span></div>
         <div class="project-links">
-          <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Full Project Page (Soon)</a>
-          <a href="#" target="_blank"><i class="fab fa-github"></i> Firmware Repo</a>
+          <a href="#"><i class="fas fa-external-link-alt"></i> Full Project Page (Soon)</a>
+          <a href="#"><i class="fab fa-github"></i> Firmware Repo</a>
         </div>
       </div>
     </div>
@@ -442,11 +453,20 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact Section with FULL FORM (email, subject, message) -->
   <section id="contact">
     <div class="inner-card fade-up" style="text-align: center;">
       <i class="fas fa-bolt" style="font-size: 2rem; color:#F97316;"></i>
       <h3>Let's collaborate on FPGA, embedded, or RF projects</h3>
+      
+      <!-- Working contact form - replace YOUR_FORM_ID with your Formspree endpoint -->
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="max-width: 550px; margin: 1.5rem auto; text-align: left;">
+        <input type="email" name="email" placeholder="Your email address" required>
+        <input type="text" name="subject" placeholder="Subject (e.g., FPGA Contract Opportunity)" required>
+        <textarea name="message" rows="5" placeholder="Tell me about your project, role, or collaboration idea..." required></textarea>
+        <button type="submit" class="btn-glow" style="border: none; cursor: pointer; width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </form>
+      
       <p><i class="fas fa-envelope"></i> SamuelFoster543@gmail.com | <i class="fas fa-phone-alt"></i> +44 7578460400</p>
       <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
         <a href="https://github.com/PixelHD543" target="_blank" class="btn-glow" style="background: #1E293B; color: white; text-decoration: none;"><i class="fab fa-github"></i> GitHub</a>
