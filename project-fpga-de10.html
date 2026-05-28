@@ -3,22 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FPGA Development: DE10-Nano & Intel Quartus | Samuel Foster</title>
+  <meta name="description" content="4-bit ALU designed from scratch on Intel DE10-Lite – schematic capture, simulation, and physical deployment. Full digital logic design process documented.">
+  <title>FPGA Project: 4-bit ALU from Scratch on DE10-Lite | Samuel Foster</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #0B1120; color: #E2E8F0; line-height: 1.6; }
-    .circuit-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 15% 30%, rgba(249,115,22,0.03) 2%, transparent 2.5%), repeating-linear-gradient(45deg, rgba(56,189,248,0.02) 0px, rgba(56,189,248,0.02) 2px, transparent 2px, transparent 8px); pointer-events: none; z-index: -1; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    .circuit-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 15% 30%, rgba(249,115,22,0.03) 2%, transparent 2.5%); pointer-events: none; z-index: -1; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
     .back-link { display: inline-flex; align-items: center; gap: 8px; background: rgba(249,115,22,0.15); padding: 0.5rem 1rem; border-radius: 40px; text-decoration: none; color: #FACC15; margin-bottom: 2rem; }
-    .project-header { margin-bottom: 2rem; }
-    .project-header h1 { font-size: 2.5rem; background: linear-gradient(135deg, #FFF, #FACC15, #F97316); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; background: #1E293B; border-radius: 1rem; padding: 1rem; margin: 1rem 0; }
+    .back-link:hover { background: rgba(249,115,22,0.3); }
+    .project-header h1 { font-size: 2.5rem; background: linear-gradient(135deg, #FFF, #FACC15, #F97316); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
+    .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1rem; background: #1E293B; border-radius: 1rem; padding: 1rem; margin: 1rem 0; }
     .content-section { background: rgba(15,25,45,0.7); backdrop-filter: blur(8px); border-radius: 1.5rem; padding: 1.8rem; margin: 1.5rem 0; border-left: 3px solid #F97316; }
-    .btn-glow { background: linear-gradient(95deg, #F97316, #FDBA74); padding: 0.6rem 1.6rem; border-radius: 60px; font-weight: 700; color: #0A0C10; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .code-block { background: #0F172A; padding: 1rem; border-radius: 0.75rem; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.8rem; margin: 1rem 0; border: 1px solid #334155; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
+    .gallery-img { flex: 1; min-width: 200px; background: #1E293B; border-radius: 1rem; padding: 1rem; text-align: center; border: 1px solid #334155; }
+    .gallery-img i { font-size: 2rem; color: #F97316; }
+    .instruction-table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #0F172A; border-radius: 1rem; overflow: hidden; }
+    .instruction-table th, .instruction-table td { border: 1px solid #334155; padding: 0.75rem; text-align: left; font-family: 'Fira Code', monospace; font-size: 0.8rem; }
+    .instruction-table th { background: #1E293B; color: #FACC15; }
+    .btn-glow { background: linear-gradient(95deg, #F97316, #FDBA74); padding: 0.6rem 1.6rem; border-radius: 60px; font-weight: 700; color: #0A0C10; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-top: 0.5rem; }
     footer { margin-top: 3rem; text-align: center; background: rgba(5,10,20,0.8); border-radius: 1.5rem; padding: 1.2rem; font-size: 0.7rem; }
-    @media (max-width: 700px) { .container { padding: 1rem; } .project-header h1 { font-size: 1.8rem; } }
+    .video-placeholder { background: #1E293B; border-radius: 1rem; padding: 2rem; text-align: center; border: 1px dashed #F97316; margin: 1rem 0; }
+    @media (max-width: 700px) { .container { padding: 1rem; } .project-header h1 { font-size: 1.8rem; } .instruction-table th, .instruction-table td { font-size: 0.65rem; padding: 0.4rem; } }
   </style>
 </head>
 <body>
@@ -27,64 +36,189 @@
   <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> ← Back to Portfolio</a>
 
   <div class="project-header">
-    <h1>Intel Quartus & DE10-Nano FPGA Development</h1>
+    <h1>4-bit ALU – Designed from Scratch on Intel DE10-Lite</h1>
     <div class="specs-grid">
-      <div><i class="fas fa-microchip"></i> <strong>FPGA:</strong> Intel Cyclone V (Terasic DE10-Nano)</div>
-      <div><i class="fas fa-code"></i> <strong>HDL:</strong> Verilog / VHDL</div>
+      <div><i class="fas fa-microchip"></i> <strong>FPGA:</strong> Intel DE10-Lite</div>
+      <div><i class="fas fa-code"></i> <strong>Design:</strong> Schematic / Block Diagram</div>
       <div><i class="fab fa-intel"></i> <strong>Tools:</strong> Quartus Prime, ModelSim</div>
-      <div><i class="fas fa-tachometer-alt"></i> <strong>Max Clock:</strong> 62 MHz (pipelined)</div>
+      <div><i class="fas fa-calculator"></i> <strong>Functions:</strong> ADD, SUB, AND, XOR</div>
     </div>
   </div>
 
+  <!-- ===== SECTION 1: THE FLEX – DESIGNED FROM SCRATCH ===== -->
   <div class="content-section">
-    <h2><i class="fas fa-microchip"></i> Project Overview</h2>
-    <p>Developed multiple FPGA cores on the Terasic DE10-Nano board, focusing on real-time signal processing and embedded processor design. All projects version-controlled with Git and documented on GitHub.</p>
-    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-      <li>✅ 12-tap FIR filter with pipelined MAC – 62 MHz max frequency</li>
-      <li>✅ Custom RISC-V RV32I soft-core processor (3-stage pipeline)</li>
-      <li>✅ UART and SPI controllers for external sensor interfacing</li>
-      <li>✅ 256-point FFT hardware accelerator – 8× faster than pure software</li>
-    </ul>
+    <h2><i class="fas fa-microchip"></i> The Flex: A 4-bit ALU Built from Zero</h2>
+    <p>This entire ALU was <strong>designed from scratch</strong> – starting with basic logic gates, then building multiplexers, then a full adder, then a 1-bit ALU, and finally a 4-bit ALU. Every component was simulated, verified, and then deployed to physical hardware.</p>
+    <div class="code-block">
+      <pre style="margin:0;">
+Building blocks (bottom → up):
+
+Mux2 (2:1 multiplexer) → selects ADD vs SUB
+         ↓
+Mux4 (4:1 multiplexer) → selects operation (AND/XOR/ADD/SUB)
+         ↓
+Full Adder → binary addition with carry in/out
+         ↓
+1-bit ALU → processes 1 bit + carry chain
+         ↓
+4-bit ALU → 4 parallel 1-bit ALUs with carry chain
+         ↓
+Pin assignment → to DE10-Lite board's 7-segment displays</pre>
+    </div>
+    <p><strong>Why this matters for FPGA hiring:</strong> Most engineers can write Verilog. Few can explain <em>how</em> an adder works at the gate level, or why a carry chain limits clock speed. This project proves I understand digital logic, not just syntax.</p>
   </div>
 
+  <!-- ===== SECTION 2: COMPONENT DEEP DIVE ===== -->
   <div class="content-section">
-    <h2><i class="fas fa-tasks"></i> Technical Challenges & Solutions</h2>
-    <p><strong>Challenge 1: Timing closure</strong> – The FIR filter initially failed timing at 50 MHz due to long combinatorial paths in the multiplier-accumulator. <strong>Solution:</strong> Pipelined the MAC unit into 3 stages and added register banking, achieving 62 MHz with 12% logic utilisation.</p>
-    <p><strong>Challenge 2: Memory bandwidth bottleneck</strong> – The RISC-V core stalled frequently on block RAM access. <strong>Solution:</strong> Implemented a wishbone bus with burst transfers and a 2KB direct-mapped instruction cache, reducing average memory access time by 68%.</p>
-    <p><strong>Challenge 3: Debugging without oscilloscope</strong> – Signal probing inside Quartus Signal Tap logic analyzer. Created custom trigger conditions for UART receive errors.</p>
+    <h2><i class="fas fa-puzzle-piece"></i> Component Deep Dive: From Mux to ALU</h2>
+    
+    <h3>1. Mux2 – The ADD/SUB Selector</h3>
+    <p>A 2:1 multiplexer determines whether the full adder will ADD (selector=0) or SUBTRACT (selector=1). For subtraction, the Mux2 passes the inverted version of Input B (using two's complement).</p>
+    <div class="gallery">
+      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>Figure 1:</strong> Mux2 Schematic</p><small>📸 Placeholder – add your schematic from report</small></div>
+      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>Figure 7:</strong> Mux2 Waveform</p><small>📸 Placeholder – add your waveform</small></div>
+    </div>
+
+    <h3>2. Mux4 – Operation Selector</h3>
+    <p>A 4:1 multiplexer selects which function the ALU performs based on two select lines (Op0, Op1):</p>
+    <ul><li>00 → AND</li><li>01 → OR (or XOR in this design)</li><li>10 → ADD</li><li>11 → SUBTRACT</li></ul>
+    <div class="gallery">
+      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>Figure 2:</strong> Mux4 Schematic</p><small>📸 Placeholder</small></div>
+      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>Figure 8:</strong> Mux4 Waveform</p><small>📸 Placeholder</small></div>
+    </div>
+
+    <h3>3. Full Adder – The Core Calculation Engine</h3>
+    <p>The full adder takes three inputs (A, B, Carry-In) and produces Sum and Carry-Out. The truth table:</p>
+    <div class="code-block">
+      <pre style="margin:0;">
+A B Cin → Sum, Cout
+0 0 0  → 0, 0
+0 0 1  → 1, 0
+0 1 0  → 1, 0
+0 1 1  → 0, 1
+1 0 0  → 1, 0
+1 0 1  → 0, 1
+1 1 0  → 0, 1
+1 1 1  → 1, 1</pre>
+    </div>
+    <p>The carry-out from each bit feeds into the next bit's carry-in – this ripple-carry architecture is the foundation of all integer arithmetic in CPUs.</p>
+    <div class="gallery">
+      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>Figure 3:</strong> Full Adder Schematic</p><small>📸 Placeholder</small></div>
+    </div>
   </div>
 
+  <!-- ===== SECTION 3: SIMULATION VERIFICATION ===== -->
   <div class="content-section">
-    <h2><i class="fab fa-github"></i> Version Control & Hardware CI</h2>
-    <p>All Quartus projects are managed in Git with this structure:</p>
-    <pre style="background:#0F172A; padding:1rem; border-radius:0.75rem; overflow-x:auto; font-family:'Fira Code';"><code>fpga-de10/
-├── rtl/           # Verilog/VHDL source files
-├── constraints/   # .sdc timing constraints
-├── sim/           # ModelSim testbenches
-├── quartus/       # .qpf project files
-└── docs/          # Pin mappings, block diagrams</code></pre>
-    <p>Git LFS tracks large binary files (.sof, .rbf). GitHub runs syntax checks on each push.</p>
-    <a href="https://github.com/PixelHD543" target="_blank" class="btn-glow" style="margin-top: 1rem; display: inline-block;"><i class="fab fa-github"></i> View My GitHub Profile</a>
+    <h2><i class="fas fa-chart-line"></i> Simulation – Verifying Every Function</h2>
+    <p>Before touching the physical board, every function was simulated in ModelSim. This is professional discipline – hardware is expensive and slow to debug. Simulation catches errors early.</p>
+    
+    <h3>1-bit ALU Functions</h3>
+    <div class="gallery">
+      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>AND:</strong> Output=1 only when A=1 AND B=1</p><small>📸 Figure 9 from report</small></div>
+      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>XOR:</strong> Output=1 when A≠B</p><small>📸 Figure 10 from report</small></div>
+      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>ADD:</strong> With carry-out shown</p><small>📸 Figure 11 from report</small></div>
+    </div>
+
+    <h3>4-bit ALU Functions</h3>
+    <div class="gallery">
+      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>4-bit AND:</strong> 4&4=4, 1&4=0</p><small>📸 Figure 12 from report</small></div>
+      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>4-bit ADD:</strong> 4+4=8, 4+12=12</p><small>📸 Figure 13 from report</small></div>
+      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>4-bit SUB:</strong> 4-4=0, 2-4=14 (two's complement)</p><small>📸 Figure 14 from report</small></div>
+      <div class="gallery-img"><i class="fas fa-chart-line"></i><p><strong>4-bit XOR:</strong> 1^1=0, 6^14=2</p><small>📸 Figure 15 from report</small></div>
+    </div>
   </div>
 
+  <!-- ===== SECTION 4: INSTRUCTION SET & REGISTER FILE ===== -->
   <div class="content-section">
-    <h2><i class="fas fa-chart-line"></i> Measured Performance</h2>
+    <h2><i class="fas fa-database"></i> Register File & Assembly Instructions</h2>
+    <p>Beyond the ALU, I designed a register file that can write to one register and read two registers simultaneously – a key CPU component. I then tested it with a custom assembly instruction set.</p>
+    
+    <h3>Instruction Set Test</h3>
+    <table class="instruction-table">
+      <thead>
+        <tr><th>Assembly</th><th>Binary</th><th>Hex</th><th>Result</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>LI R1, 14</td><td>0000000100001110</td><td>010E</td><td>R1 = 14</td></tr>
+        <tr><td>LI R2, 7</td><td>0000001000000111</td><td>0207</td><td>R2 = 7</td></tr>
+        <tr><td>SW R1, 9</td><td>0010000100001001</td><td>2109</td><td>Memory(9) = 14</td></tr>
+        <tr><td>ADD R3, R2, R1</td><td>0011001100100001</td><td>3321</td><td>R3 = 21</td></tr>
+        <tr><td>SUB R4, R3, R1</td><td>0100010000110001</td><td>4431</td><td>R4 = 7</td></tr>
+        <tr><td>LW R5, 9</td><td>0001010100001001</td><td>1509</td><td>R5 = 14</td></tr>
+        <tr><td>AND R6, R5, R1</td><td>0101011001010001</td><td>5651</td><td>R6 = 1</td></tr>
+        <tr><td>XOR R7, R6, R5</td><td>0110011101100101</td><td>6765</td><td>R7 = 3</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Register file behaviour:</strong> Figure 16 (report) shows writing to registers – only one register written at a time. Figure 17 shows reading two registers simultaneously (registers 12 and 8).</p>
+  </div>
+
+  <!-- ===== SECTION 5: PHYSICAL DEPLOYMENT ===== -->
+  <div class="content-section">
+    <h2><i class="fas fa-video"></i> Physical Deployment – DE10-Lite Board</h2>
+    <p>The final ALU was pinned to the DE10-Lite board's 7-segment displays and switches. The video below shows the working ALU performing operations in real hardware.</p>
+    
+    <div class="video-placeholder">
+      <i class="fas fa-video" style="font-size: 3rem; color:#F97316;"></i>
+      <p><strong>Working ALU on DE10-Lite</strong></p>
+      <p>📸 <a href="#" style="color:#FACC15;">Link to video from report</a> – original SharePoint video (make public or upload to YouTube unlisted)</p>
+      <small>If the link above doesn't work, contact me for the recording.</small>
+    </div>
+
+    <div class="gallery">
+      <div class="gallery-img"><i class="fas fa-microchip"></i><p><strong>Figure 6:</strong> Pin-assigned 4-bit ALU</p><small>📸 Placeholder – add your pinout diagram</small></div>
+      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>DE10-Lite Board</strong></p><small>📸 Photo of board running the ALU</small></div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 6: SKILLS DEMONSTRATED ===== -->
+  <div class="content-section">
+    <h2><i class="fas fa-chalkboard-user"></i> Skills Demonstrated to FPGA Employers</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Digital Logic Design</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Schematic Capture</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">ModelSim Simulation</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Quartus Prime</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Ripple-Carry Adder</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Multiplexer Design</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Register File Architecture</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Assembly Instruction Encoding</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Hardware Deployment</span>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 7: GITHUB REPOSITORY ===== -->
+  <div class="content-section">
+    <h2><i class="fab fa-github"></i> GitHub Repository</h2>
+    <p>The complete project files – schematics, simulation waveforms, pin assignments, and documentation – are available on GitHub.</p>
+    <div class="code-block">
+      <pre style="margin:0;">
+fpga-4bit-alu/
+├── schematics/     # Block diagrams (Mux2, Mux4, Adder, 1-bit, 4-bit)
+├── simulations/    # ModelSim waveforms (AND, XOR, ADD, SUB)
+├── quartus/        # Quartus project files + pin assignments
+├── docs/           # Full report (PDF)
+└── README.md       # Project overview</pre>
+    </div>
+    <a href="#" class="btn-glow"><i class="fab fa-github"></i> View Repository (Coming Soon)</a>
+    <p style="margin-top: 0.8rem;"><small>⚠️ Repository currently being cleaned up. Contact me directly for early access to the Verilog/schematic files.</small></p>
+  </div>
+
+  <!-- ===== SECTION 8: REPORT & REFERENCES ===== -->
+  <div class="content-section">
+    <h2><i class="fas fa-file-alt"></i> Full Academic Report</h2>
+    <p>This project was completed as part of my B.Eng Electrical & Electronic Engineering degree. The full report (referenced throughout this page) includes:</p>
     <ul>
-      <li><strong>FIR Filter:</strong> 12.5 MSPS throughput at 50 MHz (84% logic utilisation after optimisation)</li>
-      <li><strong>RISC-V Core:</strong> 3,200 LUTs + 2 M10K blocks, 0.85 DMIPS/MHz</li>
-      <li><strong>Power:</strong> Dynamic power < 180mW at full operation (measured via Quartus Power Analyzer)</li>
+      <li>Complete component schematics (Figures 1-6)</li>
+      <li>Simulation waveforms for all functions (Figures 7-15)</li>
+      <li>Register file read/write verification (Figures 16-17)</li>
+      <li>Instruction set table and assembly code</li>
     </ul>
-  </div>
-
-  <div class="content-section">
-    <h2><i class="fas fa-link"></i> Resources & Links</h2>
-    <p><strong>GitHub:</strong> <a href="https://github.com/PixelHD543" style="color:#FACC15;" target="_blank">github.com/PixelHD543</a> – See my repositories for FPGA code examples<br>
-    <strong>Blog:</strong> <a href="https://github.com/PixelHD543/BLOG-for-3D-Print" style="color:#FACC15;" target="_blank">Digital Manufacturing Blog (GitHub)</a><br>
-    <strong>Tools Used:</strong> Intel Quartus Prime 23.1, ModelSim, Signal Tap Logic Analyzer</p>
+    <a href="#" class="btn-glow" style="background: #1E293B; color: white;"><i class="fas fa-file-pdf"></i> Download Full Report (PDF)</a>
   </div>
 
   <footer>
-    <i class="far fa-copyright"></i> 2026 Samuel Foster – FPGA & Embedded Engineering Portfolio
+    <i class="far fa-copyright"></i> 2026 Samuel Foster – 4-bit ALU from Scratch on Intel DE10-Lite<br>
+    Designed from gates to hardware | Simulation-verified | Physical deployment
   </footer>
 </div>
 </body>
