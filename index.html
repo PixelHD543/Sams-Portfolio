@@ -3,18 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Samuel Foster – MSc Robotics & Automation. Electronics & embedded systems expert, Industry 4.0 architect, advanced research in IoT, autonomous systems and digital manufacturing.">
-  <title>Samuel Foster | MSc Robotics & Automation — Electronics & Embedded Systems</title>
-  <!-- Google Fonts (professional + technical) -->
+  <meta name="description" content="Samuel Foster – MSc Robotics & Automation. FPGA, Embedded Systems, LoRaWAN, and PLC engineering portfolio.">
+  <title>Samuel Foster | FPGA & Embedded Engineer – Robotics & Automation</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #0B1120;
@@ -22,28 +16,16 @@
       line-height: 1.5;
       scroll-behavior: smooth;
     }
-
-    /* subtle circuit pattern overlay */
     .circuit-bg {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background-image: radial-gradient(circle at 15% 30%, rgba(249, 115, 22, 0.03) 2%, transparent 2.5%),
                         repeating-linear-gradient(45deg, rgba(56, 189, 248, 0.02) 0px, rgba(56, 189, 248, 0.02) 2px, transparent 2px, transparent 8px);
-      background-size: 40px 40px, 16px 16px;
       pointer-events: none;
       z-index: -1;
     }
-
-    .container {
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 1.5rem 2rem;
-    }
-
-    /* modern glassmorphic header / card base */
+    .container { max-width: 1320px; margin: 0 auto; padding: 1.5rem 2rem; }
     .card {
       background: rgba(15, 25, 45, 0.7);
       backdrop-filter: blur(12px);
@@ -51,12 +33,7 @@
       border-radius: 1.5rem;
       transition: all 0.3s ease;
     }
-    .card:hover {
-      border-color: rgba(249, 115, 22, 0.6);
-      box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.4);
-    }
-
-    /* sticky navigation refined */
+    .card:hover { border-color: rgba(249, 115, 22, 0.6); box-shadow: 0 18px 30px -12px rgba(0,0,0,0.4); }
     .sticky-nav {
       position: sticky;
       top: 1.2rem;
@@ -84,41 +61,25 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      letter-spacing: -0.2px;
     }
-    .nav-link i {
-      color: #F97316;
-      font-size: 0.85rem;
-    }
-    .nav-link:hover, .nav-link.active {
-      background: rgba(249, 115, 22, 0.2);
-      color: #FACC15;
-    }
-
-    /* hero section - electronics focus */
+    .nav-link i { color: #F97316; font-size: 0.85rem; }
+    .nav-link:hover, .nav-link.active { background: rgba(249, 115, 22, 0.2); color: #FACC15; }
     .hero {
       background: linear-gradient(125deg, rgba(5, 15, 30, 0.95), rgba(2, 10, 22, 0.98));
       border-radius: 2rem;
       padding: 2.5rem 2rem;
       margin-bottom: 2rem;
       border-left: 4px solid #F97316;
-      border-right: 1px solid rgba(249,115,22,0.2);
     }
     .hero h1 {
       font-size: 3rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
       background: linear-gradient(135deg, #FFFFFF, #FACC15, #F97316);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
-    .badge-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin: 0.8rem 0 1rem;
-    }
+    .badge-group { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 0.8rem 0 1rem; }
     .elec-badge {
       background: rgba(249, 115, 22, 0.15);
       border: 1px solid #F97316;
@@ -128,20 +89,7 @@
       font-weight: 600;
       font-family: 'Fira Code', monospace;
     }
-    .title {
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: #94A3B8;
-      border-left: 3px solid #F97316;
-      padding-left: 1rem;
-      margin: 1rem 0;
-    }
-    .contact-info {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 1.4rem;
-    }
+    .contact-info { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.4rem; }
     .contact-chip {
       background: #1E293B;
       border-radius: 40px;
@@ -166,13 +114,15 @@
       font-size: 0.85rem;
       cursor: pointer;
       transition: 0.2s;
+      text-decoration: none;
     }
-    .btn-glow:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+    .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #F97316;
+      color: #FACC15;
     }
-
-    /* section styling */
+    .btn-outline:hover { background: rgba(249,115,22,0.2); }
     .section-title {
       font-size: 1.8rem;
       font-weight: 700;
@@ -181,16 +131,9 @@
       align-items: center;
       gap: 12px;
     }
-    .section-title i {
-      color: #F97316;
-      font-size: 1.6rem;
-    }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 1.8rem;
-      margin-bottom: 2rem;
-    }
+    .section-title i { color: #F97316; font-size: 1.6rem; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.8rem; margin-bottom: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; margin-bottom: 2rem; }
     .inner-card {
       background: rgba(10, 18, 30, 0.7);
       backdrop-filter: blur(8px);
@@ -199,26 +142,38 @@
       border: 1px solid rgba(56, 189, 248, 0.15);
       transition: transform 0.2s, border-color 0.2s;
       height: 100%;
+      display: flex;
+      flex-direction: column;
     }
-    .inner-card:hover {
-      border-color: #F97316;
-      transform: translateY(-3px);
+    .inner-card:hover { border-color: #F97316; transform: translateY(-3px); }
+    .project-img {
+      width: 100%;
+      height: 180px;
+      background: #1E293B;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid #334155;
     }
-    .exp-item {
-      border-left: 2px solid #F97316;
-      padding-left: 1rem;
-      margin-bottom: 1.3rem;
+    .project-img img { width: 100%; height: 100%; object-fit: cover; }
+    .project-img-placeholder {
+      background: linear-gradient(135deg, #1E293B, #0F172A);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #64748B;
+      font-size: 0.8rem;
+      text-align: center;
     }
-    .exp-title {
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
-    .exp-date {
-      font-size: 0.7rem;
-      color: #94A3B8;
-      font-family: 'Fira Code', monospace;
-      margin: 0.2rem 0 0.5rem;
-    }
+    .project-img-placeholder i { font-size: 2.5rem; color: #F97316; }
+    .project-links { margin-top: auto; display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1rem; }
+    .project-links a { color: #FACC15; text-decoration: none; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 5px; }
+    .project-links a:hover { color: #F97316; }
     .skill-chip {
       background: rgba(249, 115, 22, 0.12);
       border: 0.5px solid rgba(249, 115, 22, 0.4);
@@ -231,20 +186,9 @@
       color: #FACC15;
       font-family: 'Fira Code', monospace;
     }
-    .project-list {
-      list-style: none;
-    }
-    .project-list li {
-      margin-bottom: 0.9rem;
-      padding-left: 1.4rem;
-      position: relative;
-    }
-    .project-list li i {
-      color: #F97316;
-      position: absolute;
-      left: 0;
-      top: 0.2rem;
-    }
+    .exp-item { border-left: 2px solid #F97316; padding-left: 1rem; margin-bottom: 1.3rem; }
+    .exp-title { font-weight: 700; font-size: 1.1rem; }
+    .exp-date { font-size: 0.7rem; color: #94A3B8; font-family: 'Fira Code', monospace; margin: 0.2rem 0 0.5rem; }
     .cert-item {
       background: #111827;
       border-radius: 30px;
@@ -255,6 +199,17 @@
       border-left: 2px solid #F97316;
       font-family: monospace;
     }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #E2E8F0;
+      font-family: inherit;
+      margin-bottom: 1rem;
+    }
+    .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: #F97316; }
     footer {
       margin-top: 3rem;
       text-align: center;
@@ -264,16 +219,8 @@
       font-size: 0.7rem;
       border: 1px solid #1E293B;
     }
-    /* fade up & transitions */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(25px);
-      transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .fade-up { opacity: 0; transform: translateY(25px); transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
     .back2top {
       position: fixed;
       bottom: 1.5rem;
@@ -292,10 +239,7 @@
       z-index: 99;
       box-shadow: 0 5px 12px black;
     }
-    .back2top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
+    .back2top.visible { opacity: 1; visibility: visible; }
     @media (max-width: 780px) {
       .container { padding: 1rem; }
       .hero h1 { font-size: 2rem; }
@@ -306,32 +250,31 @@
 <body>
 <div class="circuit-bg"></div>
 <div class="container">
-  <!-- navigation -->
   <div class="sticky-nav" id="stickyNav">
     <a href="#home" class="nav-link active" data-section="home"><i class="fas fa-microchip"></i> Home</a>
+    <a href="#projects" class="nav-link" data-section="projects"><i class="fas fa-project-diagram"></i> Projects</a>
     <a href="#education" class="nav-link" data-section="education"><i class="fas fa-graduation-cap"></i> Education</a>
-    <a href="#research" class="nav-link" data-section="research"><i class="fas fa-flask"></i> Research</a>
     <a href="#experience" class="nav-link" data-section="experience"><i class="fas fa-briefcase"></i> Experience</a>
     <a href="#skills" class="nav-link" data-section="skills"><i class="fas fa-code"></i> Skills</a>
     <a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> Contact</a>
   </div>
 
-  <!-- Hero electronics -->
+  <!-- Hero Section -->
   <section id="home">
     <div class="hero fade-up">
       <div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
         <div>
           <h1>Samuel Foster<span style="font-size: 1.5rem;"> B.Eng, MSc(c)</span></h1>
           <div class="badge-group">
-            <span class="elec-badge"><i class="fas fa-microchip"></i> Embedded Systems Architect</span>
-            <span class="elec-badge"><i class="fas fa-robot"></i> MSc Robotics & Automation</span>
-            <span class="elec-badge"><i class="fas fa-chart-line"></i> Industry 4.0 Specialist</span>
+            <span class="elec-badge"><i class="fas fa-microchip"></i> FPGA / Embedded</span>
+            <span class="elec-badge"><i class="fas fa-broadcast-tower"></i> RF / LoRaWAN</span>
+            <span class="elec-badge"><i class="fas fa-industry"></i> PLC / Industrial</span>
           </div>
         </div>
-        <div class="btn-glow" id="contactBtn"><i class="fas fa-bolt"></i> Connect with me</div>
+        <a href="Samuel_Foster_CV.pdf" class="btn-glow" download><i class="fas fa-download"></i> Download CV (PDF)</a>
       </div>
-      <div class="title">🔌 Electronics-first engineer — designing resilient hardware/software ecosystems, from LoRaWAN meshes to FPGA-based control systems</div>
-      <p style="max-width: 750px; color: #CBD5F0; margin-bottom: 0.8rem;">Master's candidate in Robotics & Automation with deep expertise in PCB design, embedded OS, digital twins, and advanced manufacturing. I turn complex electrical concepts into real-world systems that perform.</p>
+      <div class="title">🔌 Electronics-first engineer — FPGA, embedded RTOS, LoRa mesh networks, and Industry 4.0</div>
+      <p style="max-width: 750px; color: #CBD5F0; margin-bottom: 0.8rem;">Master's candidate in Robotics & Automation with hands-on experience in PCB design, VHDL/Verilog, ARM Cortex-M, and Siemens PLCs. I build systems that work at the intersection of hardware and software.</p>
       <div class="contact-info">
         <span class="contact-chip"><i class="fas fa-map-pin"></i> Bradford, UK</span>
         <span class="contact-chip"><i class="fas fa-phone-alt"></i> +44 7578460400</span>
@@ -341,173 +284,208 @@
     </div>
   </section>
 
-  <!-- Mastery highlight (electronics) -->
-  <div class="card fade-up" style="padding: 1.2rem 1.8rem; margin-bottom: 2rem;">
-    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; align-items: center;">
-      <div><i class="fas fa-microchip" style="color:#F97316; font-size: 2rem;"></i> <strong>FPGA & HDL</strong> | Intel Quartus / Verilog</div>
-      <div><i class="fas fa-network-wired"></i> <strong>LoRaWAN + FSO</strong> | Mesh networking for resilient comms</div>
-      <div><i class="fas fa-industry"></i> <strong>Digital Twin</strong> | Tecnomatix / Process capability (Cp>1.33)</div>
-      <div><i class="fas fa-qrcode"></i> <strong>Digital Thread</strong> | QR + GitHub traceability</div>
-    </div>
-  </div>
+  <!-- === NEW PROJECTS GALLERY === -->
+  <section id="projects">
+    <div class="section-title fade-up"><i class="fas fa-project-diagram"></i> Featured Engineering Projects</div>
+    <div class="grid-3">
+      
+      <!-- Project 1: Self-Driving 1/8th Scale Nitro Car -->
+      <div class="inner-card fade-up">
+        <div class="project-img" id="nitroCarImg">
+          <!-- Replace this div with your actual image -->
+          <div class="project-img-placeholder" style="width:100%; height:100%;">
+            <i class="fas fa-car-side"></i>
+            <span>📸 Nitro Car Photo Here</span>
+          </div>
+        </div>
+        <h3><i class="fas fa-car-side"></i> 1/8th Scale Self-Driving Nitro RC</h3>
+        <p style="font-size: 0.85rem; margin: 0.5rem 0;">Autonomous navigation using onboard IMU, GPS, and LiDAR. Real-time control loop running on STM32F4 with PID tuning for high-speed nitro engine response.</p>
+        <div>
+          <span class="skill-chip">STM32F4</span>
+          <span class="skill-chip">PID Control</span>
+          <span class="skill-chip">ROS2</span>
+          <span class="skill-chip">LiDAR</span>
+          <span class="skill-chip">GPS/INS</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
+          <a href="#" target="_blank"><i class="fab fa-youtube"></i> Demo Video</a>
+        </div>
+      </div>
 
-  <!-- Education (Electrical core) -->
+      <!-- Project 2: Unreal Engine 5 Horror Game (GitHub controlled) -->
+      <div class="inner-card fade-up">
+        <div class="project-img" id="ue5GameImg">
+          <div class="project-img-placeholder" style="width:100%; height:100%;">
+            <i class="fas fa-gamepad"></i>
+            <span>🎮 Game Screenshot Here</span>
+          </div>
+        </div>
+        <h3><i class="fas fa-skull"></i> UE5 Horror Game – "Echoes of the Circuit"</h3>
+        <p style="font-size: 0.85rem; margin: 0.5rem 0;">Atmospheric first-person horror game built in Unreal Engine 5. Full Git version control for Blueprints, C++ classes, and asset tracking. 400+ commits, feature branching, and CI via GitHub Actions.</p>
+        <div>
+          <span class="skill-chip">Unreal Engine 5</span>
+          <span class="skill-chip">C++</span>
+          <span class="skill-chip">Blueprints</span>
+          <span class="skill-chip">Git LFS</span>
+          <span class="skill-chip">Perforce-style workflow</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repo</a>
+          <a href="#" target="_blank"><i class="fab fa-itch-io"></i> Playable Demo</a>
+        </div>
+      </div>
+
+      <!-- Project 3: NATO Flood Early Warning (from CV) -->
+      <div class="inner-card fade-up">
+        <div class="project-img" id="natoProjectImg">
+          <div class="project-img-placeholder" style="width:100%; height:100%;">
+            <i class="fas fa-cloud-rain"></i>
+            <span>📡 LoRaWAN Node PCB</span>
+          </div>
+        </div>
+        <h3><i class="fas fa-shield-alt"></i> NATO Flood Early Warning System</h3>
+        <p style="font-size: 0.85rem; margin: 0.5rem 0;">Custom ARM Cortex-M4F RTOS, LoRaWAN mesh network, free-space optics backup, and AI drone coordination. PCB designed in KiCad, assembled in-house.</p>
+        <div>
+          <span class="skill-chip">FreeRTOS</span>
+          <span class="skill-chip">LoRaWAN</span>
+          <span class="skill-chip">KiCad</span>
+          <span class="skill-chip">ARM Cortex-M4</span>
+          <span class="skill-chip">AI/Computer Vision</span>
+        </div>
+        <div class="project-links">
+          <a href="#" target="_blank"><i class="fab fa-github"></i> Firmware Repo</a>
+          <a href="#" target="_blank"><i class="fas fa-microchip"></i> Hardware Docs</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Room for more projects (template you can duplicate) -->
+    <div class="grid-3" id="moreProjects">
+      <!-- Template for future projects - copy this block and fill in -->
+      <div class="inner-card fade-up" style="opacity: 0.7; border-style: dashed;">
+        <div class="project-img project-img-placeholder">
+          <i class="fas fa-plus-circle" style="font-size: 2rem;"></i>
+          <span>Next Project Coming Soon</span>
+        </div>
+        <h3>FPGA-Based SDR Receiver</h3>
+        <p style="font-size: 0.85rem;">Planned: Software-defined radio on Intel Cyclone V, demodulating LoRa signals in hardware. <em>Q4 2026</em></p>
+        <div class="project-links">
+          <a href="#"><i class="fab fa-github"></i> Coming Soon</a>
+        </div>
+      </div>
+      <div class="inner-card fade-up" style="opacity: 0.7; border-style: dashed;">
+        <div class="project-img project-img-placeholder">
+          <i class="fas fa-plus-circle" style="font-size: 2rem;"></i>
+          <span>Future Project</span>
+        </div>
+        <h3>Industrial PLC Digital Twin</h3>
+        <p style="font-size: 0.85rem;">Siemens S7-1200 simulation with Node-RED dashboard. <em>Planned for MSc dissertation extension</em></p>
+        <div class="project-links">
+          <a href="#"><i class="fab fa-github"></i> Coming Soon</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grandma's Website Card (kept from previous) -->
+    <div class="card fade-up" style="padding: 1.5rem; margin-top: 1rem;">
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-between;">
+        <div style="flex: 2;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 0.5rem;">
+            <i class="fab fa-github" style="font-size: 2rem; color: #F97316;"></i>
+            <h3 style="margin: 0;">Business Website for Grandmother</h3>
+          </div>
+          <p>Full lifecycle: design, Git version control, GitHub Pages deployment, and traffic analytics. <strong>Case study on how this taught me hardware-grade Git workflows.</strong></p>
+          <div><span class="skill-chip">HTML/CSS/JS</span><span class="skill-chip">GitHub Pages</span><span class="skill-chip">Actions CI/CD</span></div>
+        </div>
+        <div><a href="project-website.html" target="_blank" class="btn-glow" style="background: #F97316;"><i class="fas fa-external-link-alt"></i> Read Case Study</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
   <section id="education">
-    <div class="section-title fade-up"><i class="fas fa-university"></i> Electrical & Robotics Education</div>
+    <div class="section-title fade-up"><i class="fas fa-university"></i> Education</div>
     <div class="grid-2">
       <div class="inner-card fade-up">
-        <div class="exp-item">
-          <div class="exp-title">MSc Robotics and Automation (current)</div>
-          <div class="exp-date">Manchester Metropolitan University | 2025–2026</div>
-          <div>Core: Advanced Digital Manufacturing, Industrial IoT, Real-time Embedded Systems, Robotic Control, Plant Simulation.</div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-title">B.Eng Electrical & Electronic Engineering</div>
-          <div class="exp-date">Manchester Metropolitan University | 2021–2025</div>
-          <div>Dissertation: Robotic Automation · IoT Networks · Advanced Power Electronics · FPGA Design.</div>
-        </div>
+        <div class="exp-item"><div class="exp-title">MSc Robotics and Automation (current)</div><div class="exp-date">Manchester Metropolitan | 2025–2026</div><div>Advanced Digital Manufacturing, Industrial IoT, Real-time Embedded Systems, Robotic Control, Plant Simulation.</div></div>
+        <div class="exp-item"><div class="exp-title">B.Eng Electrical & Electronic Engineering</div><div class="exp-date">Manchester Metropolitan | 2021–2025</div><div>Dissertation: Robotic Automation · IoT Networks · Advanced Power Electronics · FPGA Design.</div></div>
       </div>
       <div class="inner-card fade-up">
-        <div class="exp-item">
-          <div class="exp-title">Diploma of Higher Education – Combined Science (Merit)</div>
-          <div class="exp-date">New College Bradford · Physics, Maths fundamentals</div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-title">GCSEs & BTEC</div>
-          <div class="exp-date">7 GCSEs Grade 5+ | BTEC Business Merit</div>
-        </div>
+        <div class="exp-item"><div class="exp-title">Diploma HE – Combined Science (Merit)</div><div class="exp-date">New College Bradford</div></div>
+        <div class="exp-item"><div class="exp-title">GCSEs & BTEC</div><div class="exp-date">7 GCSEs Grade 5+ | BTEC Business Merit</div></div>
       </div>
     </div>
   </section>
 
-  <!-- Research / Flagship Electronics projects -->
-  <section id="research">
-    <div class="section-title fade-up"><i class="fas fa-microscope"></i> Electronics & Embedded Research</div>
-    <div class="grid-2">
-      <div class="inner-card fade-up">
-        <h3><i class="fas fa-cloud-rain"></i> Autonomous Flood Early Warning System</h3>
-        <p>Custom RTOS on ARM Cortex-M4F, real-time sensor fusion (water level, temperature). LoRaWAN backhaul with edge anomaly detection. PCB designed and assembled in-house.</p>
-        <span class="skill-chip">FreeRTOS</span><span class="skill-chip">KiCad</span><span class="skill-chip">LoRaWAN</span>
-        <h3 style="margin-top: 1.2rem;"><i class="fas fa-broadcast-tower"></i> LoRa Mesh + Free Space Optics</h3>
-        <p>Hybrid resilient network: LoRa mesh nodes + FSO trunk lines for disaster‑prone areas. Field tested 2km+ with automatic failover.</p>
-      </div>
-      <div class="inner-card fade-up">
-        <h3><i class="fas fa-drone"></i> AI-Driven Drone Network Restoration</h3>
-        <p>Autonomous drone swarm using ROS2 and AI vision to re-establish connectivity after cellular outage. Edge computing with NVIDIA Jetson.</p>
-        <span class="skill-chip">ROS2</span><span class="skill-chip">YOLOv8</span><span class="skill-chip">Jetson Nano</span>
-        <h3 style="margin-top: 1.2rem;"><i class="fas fa-microchip"></i> Digital Twin Additive Mfg & Metrology</h3>
-        <p>QR-coded 3D printed casings with full traceability (GitHub process passport). Plant simulation for 50k units/year, Cpk>1.33.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience electronics focus -->
+  <!-- Experience -->
   <section id="experience">
-    <div class="section-title fade-up"><i class="fas fa-briefcase"></i> Technical Leadership & Industry</div>
+    <div class="section-title fade-up"><i class="fas fa-briefcase"></i> Technical Experience</div>
     <div class="grid-2">
       <div class="inner-card fade-up">
-        <div class="exp-title"><i class="fas fa-shield-alt"></i> NATO Research Associate (Self-employed)</div>
-        <div class="exp-date">06/2022 – present | Electronics & Comms R&D</div>
-        <ul style="margin-left: 1rem;">
-          <li>Architected secure microcontroller OS for extreme weather early-warning systems.</li>
-          <li>Designed custom 4-layer PCB for LoRa/GNSS integration, optimised for low power.</li>
-          <li>Implemented AI drone coordination logic and network failover protocols.</li>
-        </ul>
-        <div class="exp-title" style="margin-top: 0.8rem;"><i class="fas fa-seedling"></i> Landscape Gardener (self-employed)</div>
-        <div class="exp-date">2021–present | Project & resource management</div>
-        <p>Proven ability to manage budgets, schedules and heavy machinery — cross-functional discipline.</p>
+        <div class="exp-title"><i class="fas fa-shield-alt"></i> NATO Research Associate</div><div class="exp-date">06/2022 – present</div>
+        <ul style="margin-left: 1rem;"><li>Architected secure microcontroller OS for early-warning systems</li><li>Custom 4-layer PCB for LoRa/GNSS integration</li><li>AI drone coordination + network failover</li></ul>
+        <div class="exp-title" style="margin-top: 0.8rem;"><i class="fas fa-seedling"></i> Landscape Gardener (self-employed)</div><div class="exp-date">2021–present</div><p>Project & resource management, machinery maintenance, budget oversight.</p>
       </div>
       <div class="inner-card fade-up">
-        <div class="exp-title"><i class="fas fa-bolt"></i> Electrical Apprentice → Technician</div>
-        <div class="exp-date">07/2018 – 12/2022 | Chris Rhodes Electrical</div>
-        <p>Industrial electrical fault-finding, BS7671 compliance, safety audits, and installation of control panels. Foundation in power systems and diagnostics.</p>
-        <div class="exp-title" style="margin-top: 0.8rem;"><i class="fas fa-chalkboard-user"></i> Mentorship & Training</div>
-        <p>Delivered workshops: IoT security fundamentals, PLC programming basics (Siemens LOGO!).</p>
+        <div class="exp-title"><i class="fas fa-bolt"></i> Electrical Apprentice → Technician</div><div class="exp-date">07/2018 – 12/2022 | Chris Rhodes Electrical</div>
+        <p>Industrial fault-finding, BS7671 compliance, control panel installation, diagnostics.</p>
+        <div class="exp-title" style="margin-top: 0.8rem;"><i class="fas fa-chalkboard-user"></i> Mentorship & Training</div><p>Delivered workshops: IoT security, PLC basics (Siemens LOGO!).</p>
       </div>
     </div>
   </section>
 
-  <!-- Skills - Electronics & Tools -->
+  <!-- Skills -->
   <section id="skills">
-    <div class="section-title fade-up"><i class="fas fa-cogs"></i> Core Competencies — Electronics & Automation</div>
+    <div class="section-title fade-up"><i class="fas fa-cogs"></i> Core Competencies</div>
     <div class="grid-2">
       <div class="inner-card fade-up">
         <h3>🔧 Hardware & Embedded</h3>
-        <div>
-          <span class="skill-chip">ARM Cortex-M (STM32)</span>
-          <span class="skill-chip">FPGA / Verilog (Intel Quartus)</span>
-          <span class="skill-chip">Altium / KiCad PCB Design</span>
-          <span class="skill-chip">Embedded Linux / Yocto</span>
-          <span class="skill-chip">LoRa / LoRaWAN / FSO</span>
-          <span class="skill-chip">Siemens TIA Portal / PLC</span>
-          <span class="skill-chip">ROS2 / Robot Navigation</span>
-          <span class="skill-chip">Digital Twin (Tecnomatix)</span>
-        </div>
-        <h3 style="margin-top: 1rem;">💻 Software & Programming</h3>
-        <div>
-          <span class="skill-chip">C/C++ (embedded)</span>
-          <span class="skill-chip">Python / MATLAB</span>
-          <span class="skill-chip">Node-RED / MQTT</span>
-          <span class="skill-chip">Git / GitHub Actions</span>
-          <span class="skill-chip">Unreal Engine 5 (logic)</span>
-        </div>
+        <div><span class="skill-chip">ARM Cortex-M (STM32)</span><span class="skill-chip">FPGA / Verilog (Intel Quartus)</span><span class="skill-chip">Altium / KiCad</span><span class="skill-chip">Embedded Linux</span><span class="skill-chip">LoRa / LoRaWAN / FSO</span><span class="skill-chip">Siemens TIA Portal / PLC</span><span class="skill-chip">ROS2</span></div>
+        <h3 style="margin-top: 1rem;">💻 Software</h3>
+        <div><span class="skill-chip">C/C++</span><span class="skill-chip">Python / MATLAB</span><span class="skill-chip">Node-RED / MQTT</span><span class="skill-chip">Git / GitHub Actions</span><span class="skill-chip">Unreal Engine 5</span></div>
       </div>
       <div class="inner-card fade-up">
-        <h3><i class="fas fa-certificate"></i> Certifications & Professional Development</h3>
-        <div><span class="cert-item">IoT Connectivity – LoRaWAN & Node-RED</span>
-        <span class="cert-item">CSCS Labourer Card</span>
-        <span class="cert-item">Mental Health First Aid</span>
-        <span class="cert-item">Full UK Driving Licence</span>
-        <span class="cert-item">Level 3 Diplomas: Science, Law, Game Design</span></div>
+        <h3><i class="fas fa-certificate"></i> Certifications</h3>
+        <div><span class="cert-item">LoRaWAN & Node-RED</span><span class="cert-item">CSCS Card</span><span class="cert-item">Mental Health First Aid</span><span class="cert-item">Full UK Driving Licence</span><span class="cert-item">Level 3 Diplomas (Science, Law, Game Design)</span></div>
         <h3 style="margin-top: 1rem;">📊 Industry 4.0 Metrics</h3>
-        <p>✅ Process capability (Cpk >1.33) | ✅ 50,200 units/year simulation | ✅ Digital product passport (QR + web)</p>
+        <p>✅ Cpk >1.33 | ✅ 50k units/year simulation | ✅ Digital product passport (QR + GitHub)</p>
       </div>
     </div>
   </section>
 
-  <!-- Achievements Strip -->
-  <div class="card fade-up" style="padding: 1.2rem; text-align: center; margin: 1rem 0 2rem;">
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
-      <div><i class="fas fa-chart-line" style="font-size: 1.5rem; color:#F97316;"></i> <strong>Cpk >1.33</strong><br>Process stability</div>
-      <div><i class="fas fa-industry" style="font-size: 1.5rem; color:#F97316;"></i> <strong>50k units/year</strong><br>Simulated OEE 87%</div>
-      <div><i class="fas fa-qrcode" style="font-size: 1.5rem; color:#F97316;"></i> <strong>Full traceability</strong><br>QR → GitHub thread</div>
-      <div><i class="fas fa-microchip" style="font-size: 1.5rem; color:#F97316;"></i> <strong>Custom PCB</strong><br>Embedded LoRa + GNSS</div>
-    </div>
-  </div>
-
-  <!-- Contact -->
+  <!-- Contact Section with Form -->
   <section id="contact">
     <div class="inner-card fade-up" style="text-align: center;">
       <i class="fas fa-bolt" style="font-size: 2rem; color:#F97316;"></i>
-      <h3>Let's engineer the future — discuss electronics, robotics or Industry 4.0</h3>
-      <p><i class="fas fa-envelope"></i> SamuelFoster543@gmail.com  |  <i class="fas fa-phone-alt"></i> +44 7578460400</p>
-      <div style="display: flex; justify-content: center; gap: 1rem; margin: 1rem 0;">
-        <a href="#" class="btn-glow" style="background: #1E293B; color: white;" id="githubLink"><i class="fab fa-github"></i> GitHub Portfolio</a>
-        <a href="#" class="btn-glow" id="cvLink"><i class="fas fa-file-pdf"></i> CV / Resume (PDF)</a>
+      <h3>Let's collaborate on FPGA, embedded, or RF projects</h3>
+      <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="max-width: 500px; margin: 1rem auto;">
+        <input type="email" name="email" placeholder="Your email" required>
+        <input type="text" name="subject" placeholder="Subject (e.g., FPGA Contract)">
+        <textarea name="message" rows="4" placeholder="Tell me about your project..."></textarea>
+        <button type="submit" class="btn-glow" style="border: none; cursor: pointer;"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </form>
+      <p><i class="fas fa-envelope"></i> SamuelFoster543@gmail.com | <i class="fas fa-phone-alt"></i> +44 7578460400</p>
+      <div style="display: flex; justify-content: center; gap: 1rem;">
+        <a href="https://github.com/samuelfoster-robotics" target="_blank" class="btn-glow btn-outline" style="text-decoration: none;"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://linkedin.com/in/samuelfoster" target="_blank" class="btn-glow btn-outline" style="text-decoration: none;"><i class="fab fa-linkedin"></i> LinkedIn</a>
       </div>
     </div>
   </section>
 
   <footer>
-    <i class="far fa-copyright"></i> 2026 Samuel Foster – MSc Robotics & Automation. All projects and technical claims based on original research. <br>Electronics-first portfolio | Advanced manufacturing | Embedded systems
+    <i class="far fa-copyright"></i> 2026 Samuel Foster – MSc Robotics & Automation. FPGA | Embedded | LoRa | PLC<br>
+    Built with <i class="fas fa-heart" style="color:#F97316;"></i> for hardware engineers
   </footer>
 </div>
-
 <div class="back2top" id="back2top"><i class="fas fa-arrow-up"></i></div>
 
 <script>
-  // intersection observer + active nav + smooth
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
   const fadeElements = document.querySelectorAll('.fade-up');
-  
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
   }, { threshold: 0.1 });
   fadeElements.forEach(el => observer.observe(el));
 
@@ -516,16 +494,9 @@
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 110;
       const sectionBottom = sectionTop + section.offsetHeight;
-      if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-        current = section.getAttribute('id');
-      }
+      if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) current = section.getAttribute('id');
     });
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('data-section') === current) {
-        link.classList.add('active');
-      }
-    });
+    navLinks.forEach(link => { link.classList.remove('active'); if (link.getAttribute('data-section') === current) link.classList.add('active'); });
   }
   window.addEventListener('scroll', () => {
     setActiveLink();
@@ -533,27 +504,14 @@
     if (window.scrollY > 500) backBtn.classList.add('visible');
     else backBtn.classList.remove('visible');
   });
-
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const targetId = link.getAttribute('data-section');
-      const target = document.getElementById(targetId);
+      const target = document.getElementById(link.getAttribute('data-section'));
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
   document.getElementById('back2top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  document.getElementById('contactBtn')?.addEventListener('click', () => {
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-  });
-  document.getElementById('cvLink')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert("📄 Full CV available on request. Email SamuelFoster543@gmail.com for the detailed PDF including publications.");
-  });
-  document.getElementById('githubLink')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    alert("🔗 GitHub: github.com/samuelfoster-robotics — featuring LoRaWAN mesh router, Drone swarm simulator, and Additive traceability toolkit.");
-  });
   setActiveLink();
 </script>
 </body>
