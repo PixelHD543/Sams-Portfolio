@@ -3,20 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Manufacturing Blog | Samuel Foster</title>
+  <meta name="description" content="Digital manufacturing of modular phone casings – PFMEA, process capability (Cpk>1.33), Tecnomatix digital twin, QR traceability, and 50,064 units/year simulation.">
+  <title>Digital Manufacturing Blog | Industry 4.0 Case Study | Samuel Foster</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #0B1120; color: #E2E8F0; line-height: 1.6; }
-    .circuit-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 15% 30%, rgba(249,115,22,0.03) 2%, transparent 2.5%), repeating-linear-gradient(45deg, rgba(56,189,248,0.02) 0px, rgba(56,189,248,0.02) 2px, transparent 2px, transparent 8px); pointer-events: none; z-index: -1; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    .circuit-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 15% 30%, rgba(249,115,22,0.03) 2%, transparent 2.5%); pointer-events: none; z-index: -1; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
     .back-link { display: inline-flex; align-items: center; gap: 8px; background: rgba(249,115,22,0.15); padding: 0.5rem 1rem; border-radius: 40px; text-decoration: none; color: #FACC15; margin-bottom: 2rem; }
+    .back-link:hover { background: rgba(249,115,22,0.3); }
     .project-header h1 { font-size: 2.5rem; background: linear-gradient(135deg, #FFF, #FACC15, #F97316); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
+    .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1rem; background: #1E293B; border-radius: 1rem; padding: 1rem; margin: 1rem 0; }
     .content-section { background: rgba(15,25,45,0.7); backdrop-filter: blur(8px); border-radius: 1.5rem; padding: 1.8rem; margin: 1.5rem 0; border-left: 3px solid #F97316; }
-    .blog-preview { background: #0F172A; border-radius: 1rem; padding: 1rem; margin: 1rem 0; border: 1px solid #334155; }
-    .btn-glow { background: linear-gradient(95deg, #F97316, #FDBA74); padding: 0.6rem 1.6rem; border-radius: 60px; font-weight: 700; color: #0A0C10; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .code-block { background: #0F172A; padding: 1rem; border-radius: 0.75rem; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.8rem; margin: 1rem 0; border: 1px solid #334155; }
+    .metric-card { background: linear-gradient(135deg, #1E293B, #0F172A); border-radius: 1rem; padding: 1rem; margin: 1rem 0; border-left: 4px solid #F97316; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #0F172A; border-radius: 1rem; overflow: hidden; }
+    .comparison-table th, .comparison-table td { border: 1px solid #334155; padding: 0.75rem; text-align: left; }
+    .comparison-table th { background: #1E293B; color: #FACC15; }
+    .btn-glow { background: linear-gradient(95deg, #F97316, #FDBA74); padding: 0.6rem 1.6rem; border-radius: 60px; font-weight: 700; color: #0A0C10; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-top: 0.5rem; }
     footer { margin-top: 3rem; text-align: center; background: rgba(5,10,20,0.8); border-radius: 1.5rem; padding: 1.2rem; font-size: 0.7rem; }
+    @media (max-width: 700px) { .container { padding: 1rem; } .project-header h1 { font-size: 1.8rem; } }
   </style>
 </head>
 <body>
@@ -25,62 +33,190 @@
   <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> ← Back to Portfolio</a>
 
   <div class="project-header">
-    <h1>Digital Manufacturing Blog</h1>
-    <p style="font-size: 1.2rem; color: #94A3B8;">Technical writing on Industry 4.0, additive manufacturing, and digital traceability</p>
+    <h1>Digital Manufacturing of Modular Phone Casings</h1>
+    <div class="specs-grid">
+      <div><i class="fas fa-industry"></i> <strong>Target:</strong> 50,000+ units/year</div>
+      <div><i class="fas fa-chart-line"></i> <strong>Achieved:</strong> 50,064 units/year</div>
+      <div><i class="fas fa-microchip"></i> <strong>OEE:</strong> 87%</div>
+      <div><i class="fas fa-chart-simple"></i> <strong>Cpk:</strong> >1.33</div>
+    </div>
   </div>
 
+  <!-- ===== SECTION 1: PROJECT OVERVIEW ===== -->
   <div class="content-section">
-    <h2><i class="fas fa-blog"></i> About the Blog</h2>
-    <p>A technical blog documenting my MSc research in digital manufacturing, including QR-code based traceability systems, digital twins, and process capability analysis. All content is version-controlled on GitHub and written in HTML/CSS from scratch.</p>
-    <a href="https://github.com/PixelHD543/BLOG-for-3D-Print" target="_blank" class="btn-glow" style="margin-top: 0.5rem;"><i class="fab fa-github"></i> View Blog Repository</a>
-  </div>
-
-  <div class="content-section">
-    <h2><i class="fas fa-newspaper"></i> Featured Posts</h2>
+    <h2><i class="fas fa-cube"></i> Project Overview – MSc Digital Manufacturing</h2>
+    <p>This 9-week project developed a complete digital manufacturing process for modular phone casings (top and bottom) for "Phones-R-Us". The work spans <strong>additive manufacturing, metrology, digital twins, traceability, and process optimisation</strong> – a full Industry 4.0 implementation.</p>
     
-    <div class="blog-preview">
-      <h3><i class="fas fa-qrcode"></i> QR Code Traceability in Additive Manufacturing</h3>
-      <p><em>Last commit: May 14, 2026</em></p>
-      <p>Explores embedding scannable QR codes into 3D printed parts to create a complete digital product passport. Includes workflow: CAD → QR generation → G-code embedding → post-print scanning → GitHub log.</p>
-      <a href="https://github.com/PixelHD543/BLOG-for-3D-Print/blob/main/index.html" target="_blank" style="color:#FACC15;">Read post →</a>
-    </div>
-
-    <div class="blog-preview">
-      <h3><i class="fas fa-chart-line"></i> Process Capability (Cpk) for 3D Printing</h3>
-      <p>Statistical analysis of dimensional accuracy across 50+ printed parts. Achieved Cpk > 1.33 for key features after process optimisation (nozzle temp, print speed, cooling).</p>
-    </div>
-
-    <div class="blog-preview">
-      <h3><i class="fas fa-industry"></i> Digital Twin Simulation for Production Lines</h3>
-      <p>Using Tecnomatix Plant Simulation to model a 50,200 units/year assembly line. Optimised bottleneck stations and achieved 87% OEE.</p>
+    <div class="metric-card">
+      <h3>Key Outcomes</h3>
+      <ul>
+        <li>✅ <strong>Process capability improved:</strong> Cp 0.8 → 1.47 (Ultimaker S5 → Bambu Lab X1C)</li>
+        <li>✅ <strong>Annual output:</strong> 50,064 phones (beating 50,000 target)</li>
+        <li>✅ <strong>OEE:</strong> 87% (layout 2 with AMR)</li>
+        <li>✅ <strong>Measurement reliability:</strong> GOM ATOS GR&R <5%</li>
+        <li>✅ <strong>Traceability:</strong> QR codes + GitHub digital product passport</li>
+        <li>✅ <strong>Energy use:</strong> 0.08 kWh per casing</li>
+      </ul>
     </div>
   </div>
 
+  <!-- ===== SECTION 2: PFMEA & PROCESS IMPROVEMENT ===== -->
   <div class="content-section">
-    <h2><i class="fab fa-github"></i> Technical Implementation</h2>
-    <p>The blog is built entirely from scratch using:</p>
-    <ul style="margin-left: 1.5rem;">
-      <li>HTML5 / CSS3 – custom responsive design</li>
-      <li>GitHub Pages – free static hosting with HTTPS</li>
-      <li>Git version control – full commit history showing iterative improvement</li>
-      <li>QR code generation – embedded into 3D printed part designs</li>
+    <h2><i class="fas fa-exclamation-triangle"></i> PFMEA – From Failure to Engineered Solution</h2>
+    <p>A full Process Failure Mode Effects Analysis identified three highest-risk failures on the Ultimaker S5:</p>
+    <div class="code-block">
+      <pre style="margin:0;">
+Highest RPN (Risk Priority Number) failures:
+
+1. Bed adhesion failure     → RPN 280
+2. Layer separation         → RPN 210  
+3. Dimensional inaccuracy   → RPN 196
+
+Solutions implemented:
+→ Switched to Bambu Lab X1C (enclosed, heated chamber)
+→ Changed infill from triangular to gyroid (15%)
+→ Reduced layer height from 0.2mm to 0.16mm
+→ eSUN PLA+ filament (220°C nozzle, 55°C bed)</pre>
+    </div>
+    <p><strong>Result:</strong> First successful print with no warping – snap-fits clicked together by hand. A 10-part capability study showed Cp improved from <strong>0.8 to 1.47</strong>, with Cpk >1.33 for all critical features.</p>
+  </div>
+
+  <!-- ===== SECTION 3: DIGITAL TWIN – TECNOMATIX SIMULATION ===== -->
+  <div class="content-section">
+    <h2><i class="fas fa-desktop"></i> Digital Twin – Tecnomatix Plant Simulation</h2>
+    <p>Built a full digital twin of the production system, modelling:</p>
+    <ul>
+      <li><strong>FESTO CP assembly line:</strong> 6 stations with measured cycle times (total 85s per phone)</li>
+      <li><strong>Print farm:</strong> 12 Bambu Lab X1C printers, each producing 2 phone sets every 2 hours, running 24/7</li>
+      <li><strong>Kanban buffer:</strong> Between printers and assembly line</li>
+      <li><strong>Labour model:</strong> 4 workers at 80% efficiency, 8h/day, 5 days/week</li>
+    </ul>
+
+    <h3>Layout Comparison</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr><th>Layout</th><th>Description</th><th>Output (phones/yr)</th><th>OEE</th><th>Manual handling</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Layout 1</td><td>3 printers in U-cell</td><td>47,200</td><td>81%</td><td>High</td></tr>
+        <tr><td>Layout 2</td><td>12 printers with AMR collection</td><td><strong>50,064</strong></td><td><strong>87%</strong></td><td>Reduced by 40%</td></tr>
+      </tbody>
+    </table>
+    <p>Layout 2 was the winner – the autonomous mobile robot (AMR) reduced unnecessary walking and raised OEE to 87%.</p>
+  </div>
+
+  <!-- ===== SECTION 4: METROLOGY & GR&R ===== -->
+  <div class="content-section">
+    <h2><i class="fas fa-chart-line"></i> Metrology – GOM ATOS Scanning & GR&R</h2>
+    <p>All parts were scanned with the GOM ATOS 3D scanner. A Gauge Repeatability & Reproducibility (GR&R) study confirmed measurement reliability:</p>
+    <div class="metric-card">
+      <ul>
+        <li><strong>GR&R result:</strong> <5% – excellent measurement system</li>
+        <li><strong>Reference:</strong> CAD model from reverse-engineered master top</li>
+        <li><strong>Key features verified:</strong> Snap-hook width, slot depth, overall height</li>
+      </ul>
+    </div>
+    <p>The FESTO CP line test was successful – every casing moved smoothly through all six stations, and the finished phone passed the 100-cycle test.</p>
+  </div>
+
+  <!-- ===== SECTION 5: QR TRACEABILITY – DIGITAL PRODUCT PASSPORT ===== -->
+  <div class="content-section">
+    <h2><i class="fas fa-qrcode"></i> Digital Product Passport – QR + GitHub</h2>
+    <p>Each casing receives a laser-etched QR code linking to a live GitHub page displaying:</p>
+    <ul>
+      <li>Printer model and material batch</li>
+      <li>Infill settings and layer height</li>
+      <li>Timestamp of manufacture</li>
+      <li>Inspection results (dimensions vs CAD model)</li>
+    </ul>
+    <div class="code-block">
+      <pre style="margin:0;">
+Example QR payload:
+https://github.com/MyRoboticsJourney/phone-casing-traceability/batch-7
+
+Batch-7 page includes:
+- Printer: Bambu Lab X1C #03
+- Material: eSUN PLA+ White (Batch #2403)
+- Settings: 0.16mm layer, 15% gyroid infill
+- Dimensions: top width 68.02mm (±0.05), bottom depth 12.48mm (±0.03)
+- Status: PASSED inspection</pre>
+    </div>
+    <p><strong>Demonstrated:</strong> UR5e collaborative robot reads the QR code and sorts non-conforming parts into a reject bin – fully automated quality control.</p>
+  </div>
+
+  <!-- ===== SECTION 6: SUSTAINABILITY METRICS ===== -->
+  <div class="content-section">
+    <h2><i class="fas fa-leaf"></i> Sustainability & Energy Analysis</h2>
+    <div class="metric-card">
+      <ul>
+        <li><strong>Energy consumption:</strong> 0.08 kWh per casing (Bambu Lab X1C)</li>
+        <li><strong>Material:</strong> eSUN PLA+ (biodegradable, recyclable)</li>
+        <li><strong>Waste reduction:</strong> Additive manufacturing competitive with injection moulding at 50,000 units/year</li>
+        <li><strong>Circular potential:</strong> Local PLA recycling reduces transport emissions</li>
+      </ul>
+    </div>
+    <p>Reference: Ashby (2021) – additive manufacturing can be sustainable at medium volumes when waste is recycled locally.</p>
+  </div>
+
+  <!-- ===== SECTION 7: TECHNICAL SKILLS DEMONSTRATED ===== -->
+  <div class="content-section">
+    <h2><i class="fas fa-chalkboard-user"></i> Skills Demonstrated to Employers</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">PFMEA (Process FMEA)</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Process Capability (Cp/Cpk)</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">GR&R / Gauge R&R</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Tecnomatix Plant Simulation</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Digital Twin</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Additive Manufacturing (FDM)</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">GOM ATOS Metrology</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">QR Traceability Systems</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">OEE Analysis</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Kanban / Buffer Sizing</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Industry 4.0 Integration</span>
+      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Sustainability Metrics</span>
+    </div>
+    <p style="margin-top: 1rem;"><strong>For manufacturing / Industry 4.0 roles:</strong> This project proves I can design, measure, simulate, and trace a complete digital manufacturing process – from raw filament to QR-coded finished part – with documented capability and sustainability metrics.</p>
+  </div>
+
+  <!-- ===== SECTION 8: LIVE BLOG & RESOURCES ===== -->
+  <div class="content-section">
+    <h2><i class="fas fa-blog"></i> Live Blog – Full Documentation</h2>
+    <p>The complete 9-post blog is live with videos, images, interactive 3D viewers, and simulation files.</p>
+    
+    <div class="metric-card">
+      <h3>Blog Content Summary</h3>
+      <ul>
+        <li><strong>Post 1:</strong> Project kick-off – understanding the Phones-R-Us challenge</li>
+        <li><strong>Post 2:</strong> CAD design and reverse-engineering the master top</li>
+        <li><strong>Post 3:</strong> First prints on Ultimaker S5 – failures and PFMEA</li>
+        <li><strong>Post 4:</strong> Switching to Bambu Lab X1C – first successful print</li>
+        <li><strong>Post 5:</strong> Metrology, scanning, and FESTO line test</li>
+        <li><strong>Post 6:</strong> Plant simulation Part 1 – modelling the real line</li>
+        <li><strong>Post 7:</strong> Plant simulation Part 2 – optimisation and 50,064 units</li>
+        <li><strong>Post 8:</strong> Data-driven traceability – QR + GitHub system</li>
+        <li><strong>Post 9:</strong> Lessons learnt and sustainability reflection</li>
+      </ul>
+    </div>
+
+    <a href="https://pixelhd543.github.io/BLOG-for-3D-Print/" target="_blank" class="btn-glow"><i class="fas fa-external-link-alt"></i> Read the Full Blog</a>
+    <a href="https://github.com/PixelHD543/BLOG-for-3D-Print" target="_blank" class="btn-glow" style="background: #1E293B; color: white; margin-left: 0.5rem;"><i class="fab fa-github"></i> Blog GitHub Repository</a>
+  </div>
+
+  <!-- ===== SECTION 9: REFERENCES ===== -->
+  <div class="content-section">
+    <h2><i class="fas fa-book"></i> Key References (from blog)</h2>
+    <ul>
+      <li>Kagermann, H., Wahlster, W. and Helbig, J. (2013) 'Recommendations for implementing the strategic initiative INDUSTRIE 4.0', Acatech.</li>
+      <li>Gibson, I., Rosen, D. and Stucker, B. (2021). Additive Manufacturing Technologies. Springer.</li>
+      <li>Gao, W. et al. (2015) 'The status, challenges, and future of additive manufacturing in engineering', Computer-Aided Design.</li>
+      <li>Lu, Y., Xu, X. and Wang, L. (2020) 'Smart manufacturing process and system automation – A review', Journal of Manufacturing Systems.</li>
+      <li>Wohlers, T. (2023). Wohlers Report 2023. Wohlers Associates.</li>
     </ul>
   </div>
 
-  <div class="content-section">
-    <h2><i class="fas fa-graduation-cap"></i> Academic Context</h2>
-    <p>This blog supports my MSc Robotics & Automation dissertation on "Digital Product Passports for Additive Manufacturing". The research explores how traceability from CAD to finished part enables quality assurance and circular economy principles.</p>
-  </div>
-
-  <div class="content-section">
-    <h2><i class="fas fa-link"></i> Links</h2>
-    <p>🔗 <strong>Live Blog:</strong> <a href="https://github.com/PixelHD543/BLOG-for-3D-Print" style="color:#FACC15;" target="_blank">GitHub Repository (HTML hosted via Pages)</a><br>
-    🔗 <strong>GitHub Profile:</strong> <a href="https://github.com/PixelHD543" style="color:#FACC15;" target="_blank">github.com/PixelHD543</a><br>
-    🔗 <strong>Latest commit:</strong> May 14, 2026 – "Update QR code link in post 8"</p>
-  </div>
-
   <footer>
-    <i class="far fa-copyright"></i> 2026 Samuel Foster – Digital Manufacturing Research Portfolio
+    <i class="far fa-copyright"></i> 2026 Samuel Foster – MSc Robotics & Automation<br>
+    Digital manufacturing case study | PFMEA | Cp 0.8→1.47 | Digital twin | QR traceability | 50,064 units/year
   </footer>
 </div>
 </body>
