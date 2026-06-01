@@ -18,13 +18,16 @@
     .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 1rem; background: #1E293B; border-radius: 1rem; padding: 1rem; margin: 1rem 0; }
     .content-section { background: rgba(15,25,45,0.7); backdrop-filter: blur(8px); border-radius: 1.5rem; padding: 1.8rem; margin: 1.5rem 0; border-left: 3px solid #F97316; }
     .code-block { background: #0F172A; padding: 1rem; border-radius: 0.75rem; overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.8rem; margin: 1rem 0; border: 1px solid #334155; }
-    .gallery { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0; }
-    .gallery-img { flex: 1; min-width: 200px; background: #1E293B; border-radius: 1rem; padding: 1rem; text-align: center; border: 1px solid #334155; }
-    .gallery-img i { font-size: 2rem; color: #F97316; }
-    .architecture-diagram { background: #0F172A; border-radius: 1rem; padding: 1.5rem; margin: 1rem 0; text-align: center; font-family: 'Fira Code', monospace; font-size: 0.7rem; }
+    .gallery { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 1.5rem 0; }
+    .gallery-item { flex: 1; min-width: 280px; background: #0F172A; border-radius: 1rem; padding: 1.2rem; border: 1px solid #334155; transition: transform 0.2s; }
+    .gallery-item:hover { transform: translateY(-3px); border-color: #F97316; }
+    .gallery-item img { width: 100%; border-radius: 0.5rem; margin: 0.75rem 0; border: 1px solid #1E293B; }
+    .gallery-item h3 { color: #FACC15; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .gallery-item p { font-size: 0.85rem; color: #94A3B8; }
+    .gallery-item i { font-size: 1.5rem; color: #F97316; margin-right: 0.5rem; }
     .btn-glow { background: linear-gradient(95deg, #F97316, #FDBA74); padding: 0.6rem 1.6rem; border-radius: 60px; font-weight: 700; color: #0A0C10; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-top: 0.5rem; }
     footer { margin-top: 3rem; text-align: center; background: rgba(5,10,20,0.8); border-radius: 1.5rem; padding: 1.2rem; font-size: 0.7rem; }
-    @media (max-width: 700px) { .container { padding: 1rem; } .project-header h1 { font-size: 1.8rem; } }
+    @media (max-width: 700px) { .container { padding: 1rem; } .project-header h1 { font-size: 1.8rem; } .gallery-item { min-width: 100%; } }
   </style>
 </head>
 <body>
@@ -42,27 +45,13 @@
     </div>
   </div>
 
-  <!-- ===== SECTION 1: PROJECT OVERVIEW ===== -->
+  <!-- SECTION 1: PROJECT OVERVIEW -->
   <div class="content-section">
     <h2><i class="fas fa-tractor"></i> Project Overview – Modular Autonomous Farming</h2>
     <p>This BEng individual project developed a <strong>modular autonomous system</strong> that can be applied to any agricultural machinery. The system enables remote control and self-driving capability while leveraging British agricultural standards (all trailers share identical hookup ports).</p>
-    <p><strong>Core achievements:</strong></p>
-    <ul style="margin-left: 1.5rem;">
-      <li>✅ Real-time LiDAR-based obstacle detection and path planning</li>
-      <li>✅ Unreal Engine simulation with self-pathing plugin integration</li>
-      <li>✅ ESP32 web server architecture – each vehicle hosts its own HTTP control page</li>
-      <li>✅ Modular steering support (front-wheel steering + point-based turning)</li>
-      <li>✅ Physical demonstration on 1/8th scale nitro RC car</li>
-    </ul>
-  </div>
-
-  <!-- ===== SECTION 2: SYSTEM ARCHITECTURE ===== -->
-  <div class="content-section">
-    <h2><i class="fas fa-project-diagram"></i> System Architecture – Distributed Control</h2>
-    <p>The system uses a <strong>distributed architecture</strong> where each microcontroller hosts its own HTTP server, and Unreal Engine cycles through vehicle webpages to read/write data.</p>
-    
-    <div class="architecture-diagram">
-      <pre style="margin:0; color:#E2E8F0;">
+    <div class="code-block">
+      <pre style="margin:0;">
+System Architecture:
 ┌─────────────────┐      UDP/HTTP      ┌─────────────────┐
 │  Unreal Engine  │ ◄────────────────► │  ESP32 S3       │
 │  (Simulation)   │      (WebSocket)   │  (Vehicle 1)    │
@@ -75,21 +64,105 @@
 │  (Vehicle 2)    │                    │  Servo Control  │
 └─────────────────┘                    └─────────────────┘</pre>
     </div>
-
-    <p><strong>Why each vehicle hosts its own server:</strong> If Unreal Engine operated as a central server, it would maintain high-bandwidth data streams to every connected vehicle, causing performance degradation. Instead, each ESP32 hosts its own HTTP page – Unreal Engine cycles through server webpages, reading values and writing commands, then continues to the next server.</p>
   </div>
 
-  <!-- ===== SECTION 3: LIDAR & PATH PLANNING ===== -->
+  <!-- SECTION 2: UI SCREENS -->
   <div class="content-section">
-    <h2><i class="fas fa-eye"></i> LiDAR Navigation – 16K Samples/Second</h2>
-    <p>The RPLidar provides distance and rotation measurements at <strong>16,000 samples per second</strong>. Unreal Engine processes these to create real-time navigation boundaries.</p>
-    
+    <h2><i class="fas fa-desktop"></i> Unreal Engine Operator Interface</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <i class="fas fa-image"></i> <strong>Figure 1: Main Menu</strong>
+        <img src="images/autonomous/figure1-main-menu.png" alt="Main UI menu" onerror="this.style.display='none'">
+        <p>The starting user interface with three main options: Settings, Running Operations, and Vehicles. From here, the user configures the system, loads operations, or adds new vehicles.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-sitemap"></i> <strong>Figure 2: UI Hierarchy Diagram</strong>
+        <img src="images/autonomous/figure2-ui-hierarchy.png" alt="UI hierarchy diagram" onerror="this.style.display='none'">
+        <p>When a button is clicked, all previous UI pages are removed and a new UI is created from the specific entry, then added to the user's view. This modular UI design keeps the interface clean and intuitive.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-play-circle"></i> <strong>Figure 3: Operations Menu</strong>
+        <img src="images/autonomous/figure3-operations-menu.png" alt="Operations menu" onerror="this.style.display='none'">
+        <p>All available operations are stored here, including the main calibration routine. The user selects which operation to run on which vehicle.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-car"></i> <strong>Figure 4: Vehicle Selection</strong>
+        <img src="images/autonomous/figure4-vehicle-select.png" alt="Vehicle selection" onerror="this.style.display='none'">
+        <p>After choosing an operation, the user selects the specific vehicle. A back button is available to return to the previous UI in case of user error.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>Figure 5: Live Vehicle Telemetry</strong>
+        <img src="images/autonomous/figure5-telemetry.png" alt="Vehicle telemetry display" onerror="this.style.display='none'">
+        <p>Once connected, Unreal Engine displays real-time vehicle information: distance to obstacle in front, steering angle, and throttle/brake state. Updates every 50ms.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-check-circle"></i> <strong>Figure 6: Start Confirmation</strong>
+        <img src="images/autonomous/figure6-start-confirmation.png" alt="Start confirmation" onerror="this.style.display='none'">
+        <p>After pressing "Start", the operation is loaded onto the microcontroller and a confirmation UI appears. The operation can be terminated at any time in an emergency.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-play"></i> <strong>Figure 7: Active Operation Screen</strong>
+        <img src="images/autonomous/figure7-active-operation.png" alt="Active operation screen" onerror="this.style.display='none'">
+        <p>The vehicle in operation with system status set to "Active". The user can monitor all parameters and terminate the operation if needed.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-plug"></i> <strong>Figure 8: Web Plugin Configuration</strong>
+        <img src="images/autonomous/figure8-webplugin-config.png" alt="Web plugin config" onerror="this.style.display='none'">
+        <p>Unreal Engine's web browser plugin connects to the ESP32's HTTP server. The vehicle's IP address is set in the URL variable, enabling real-time data exchange.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-cogs"></i> <strong>Figure 9: Settings Menu</strong>
+        <img src="images/autonomous/figure9-settings-menu.png" alt="Settings menu" onerror="this.style.display='none'">
+        <p>From the settings menu, the user can adjust vehicle parameters, add new operations, draw custom routes, or enable manual override for unexpected diversions.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-gamepad"></i> <strong>Figure 10: Manual Override</strong>
+        <img src="images/autonomous/figure10-manual-override.png" alt="Manual override" onerror="this.style.display='none'">
+        <p>Manual override mode allows the user to take control of any registered vehicle via Bluetooth controller – essential for navigating unmapped areas or handling emergencies.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: SIMULATION & HARDWARE -->
+  <div class="content-section">
+    <h2><i class="fas fa-car-side"></i> Simulation & Physical Hardware</h2>
+    <div class="gallery">
+      <div class="gallery-item">
+        <i class="fas fa-car"></i> <strong>Figure 11: Unreal Engine Car Orientation</strong>
+        <img src="images/autonomous/figure11-unreal-car.png" alt="Unreal car orientation" onerror="this.style.display='none'">
+        <p>The simulation shows the vehicle's orientation, wheel angles, and real-time position. The self-pathing plugin creates navigable boundaries from LiDAR data.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-microchip"></i> <strong>Figure 12: ESP32 Web Server Page</strong>
+        <img src="images/autonomous/figure12-esp32-server.png" alt="ESP32 server page" onerror="this.style.display='none'">
+        <p>Each ESP32 hosts its own HTTP server. This page shows the calibration program running on the microcontroller, with real-time sensor values and control status.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-microchip"></i> <strong>ESP32 S3 Board Photo</strong>
+        <img src="images/autonomous/esp32-photo.jpg" alt="ESP32 S3 board" onerror="this.style.display='none'">
+        <p>The ESP32 S3 microcontroller (240MHz dual-core, WiFi, Bluetooth) mounted on the vehicle. It processes LiDAR data, runs the control loop, and hosts the web server.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-car-side"></i> <strong>Figure 14: 1/8th Scale Nitro RC Car</strong>
+        <img src="images/autonomous/figure14-nitro-car.jpg" alt="Physical nitro car" onerror="this.style.display='none'">
+        <p>The Serpent GT 1/8th nitro RC car used for physical demonstration. Servos control throttle/brake and steering. The engine provides realistic ICE behaviour for tractor simulation.</p>
+      </div>
+      <div class="gallery-item">
+        <i class="fas fa-chart-line"></i> <strong>LiDAR Setup Diagram</strong>
+        <img src="images/autonomous/lidar-diagram.png" alt="LiDAR setup" onerror="this.style.display='none'">
+        <p>RPLidar 2D scanner mounted on the vehicle. It provides 16,000 distance-angle samples per second, creating a real-time 360° obstacle map for navigation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: TECHNICAL DEEP DIVE -->
+  <div class="content-section">
+    <h2><i class="fas fa-code"></i> Technical Deep Dive – LiDAR Path Planning</h2>
     <div class="code-block">
       <pre style="margin:0;">
-// LiDAR data processing in Unreal Engine (conceptual)
+// LiDAR data processing in Unreal Engine
 // Spawn oblong actors equal to LiDAR rotation + distance measurement
 // 16,000 samples/sec → 16,000 boundary actors per second
-// Plugin creates navigable area within accumulated boundaries
 
 function processLiDARScan(rotation, distance) {
   spawnBoundaryActor(rotation, distance);
@@ -98,129 +171,33 @@ function processLiDARScan(rotation, distance) {
     updateNavigationMesh();  // Recalculate drivable area
     accumulatedScans = 0;
   }
-}</pre>
-    </div>
+}
 
-    <p><strong>Performance optimisation:</strong> 16K samples/second creates precise area mapping but reduces performance. The system allows users to adjust sample rate dynamically – balancing resolution against hardware capabilities for universal accessibility.</p>
-  </div>
-
-  <!-- ===== SECTION 4: VEHICLE CONTROL & MODULARITY ===== -->
-  <div class="content-section">
-    <h2><i class="fas fa-microchip"></i> ESP32 Control – Modular Vehicle Support</h2>
-    <p>The ESP32 S3 (240MHz) receives LiDAR data, processes navigation commands, and controls vehicle servos. The system supports <strong>multiple steering methods</strong>:</p>
-    
-    <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-car"></i><p><strong>Front-Wheel Steering</strong><br>Traditional vehicles, tractors<br>1 servo for steering + 1 for throttle/brake</p></div>
-      <div class="gallery-img"><i class="fas fa-robot"></i><p><strong>Point-Based Steering</strong><br>Activity Bot, future electric tractors<br>Servo motors for independent wheel control</p></div>
-    </div>
-
-    <h3>UDP/HTTP Communication Protocol</h3>
-    <div class="code-block">
-      <pre style="margin:0;">
-// ESP32 Web Server – hosts vehicle control page
-// Unreal Engine reads this HTTP endpoint every 50ms
-
-HTTP Server Endpoints:
+// ESP32 Web Server endpoints
 GET  /status      → { distance: 45cm, speed: 0, steering: 0 }
 POST /drive       → { throttle: 75, steering: -30 }
-POST /calibrate   → { steering_center: 1500, throttle_min: 1200 }
-POST /emergency   → { brake: 1 }
-
-// WebSocket for real-time updates (50ms refresh)</pre>
+POST /emergency   → { brake: 1 }</pre>
     </div>
   </div>
 
-  <!-- ===== SECTION 5: UNREAL ENGINE UI ===== -->
+  <!-- SECTION 5: TEST RESULTS -->
   <div class="content-section">
-    <h2><i class="fas fa-desktop"></i> Unreal Engine Operator Interface</h2>
-    <p>The UI provides complete control over vehicle configuration, operations, and real-time monitoring.</p>
-    
-    <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>Figure 1:</strong> Main menu – Settings, Operations, Vehicles</p><small>📸 Placeholder – add UI screenshot</small></div>
-      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>Figure 3-4:</strong> Vehicle selection & calibration</p><small>📸 Placeholder – add calibration UI</small></div>
-      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>Figure 5:</strong> Live vehicle telemetry</p><small>📸 Placeholder – add telemetry view</small></div>
-    </div>
-
-    <p><strong>UI capabilities:</strong></p>
-    <ul>
-      <li>Add/configure vehicles (steering method, servo values)</li>
-      <li>Load operations (pre-programmed routes or manual drawing)</li>
-      <li>Real-time telemetry (distance, speed, steering angle)</li>
-      <li>Emergency stop + manual override via Bluetooth controller</li>
-    </ul>
-  </div>
-
-  <!-- ===== SECTION 6: PHYSICAL DEMONSTRATION ===== -->
-  <div class="content-section">
-    <h2><i class="fas fa-car-side"></i> Physical Demonstration – 1/8th Scale Nitro RC Car</h2>
-    <p>The system was tested on a Serpent GT 1/8th nitro RC car, demonstrating:</p>
-    <ul>
-      <li><strong>Forward drive</strong> – engaged via servo-controlled throttle actuator</li>
-      <li><strong>Obstacle detection</strong> – object at 1 metre triggered steering response</li>
-      <li><strong>Emergency braking</strong> – object closer than threshold engaged brakes, steering returned to centre</li>
-    </ul>
-    
-    <div class="gallery">
-      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>Figure 11:</strong> Unreal Engine simulation – car orientation</p><small>📸 Placeholder – add simulation screenshot</small></div>
-      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>Figure 14:</strong> Nitro car with ESP32 + servos</p><small>📸 Placeholder – add physical car photo</small></div>
-      <div class="gallery-img"><i class="fas fa-image"></i><p><strong>Figure 12:</strong> ESP32 calibration server</p><small>📸 Placeholder – add ESP32 web interface</small></div>
-    </div>
-
-    <div class="performance-card" style="background: #0F172A; border-radius: 1rem; padding: 1rem; margin: 1rem 0; border-left: 4px solid #F97316;">
-      <h3>Test Results</h3>
-      <ul>
-        <li><strong>Software boot:</strong> Success – UI loads correctly</li>
-        <li><strong>Vehicle response:</strong> Real-time (50ms update cycle)</li>
-        <li><strong>Parameter adjustment:</strong> Immediate effect on vehicle behaviour</li>
-        <li><strong>Obstacle response:</strong> Steering activated at 1m, braking at closer range</li>
-        <li><strong>Connectivity:</strong> ESP32 web server updates every 50ms</li>
+    <h2><i class="fas fa-chart-simple"></i> Test Results & Performance</h2>
+    <div class="gallery-item" style="min-width: auto; margin-bottom: 1rem;">
+      <i class="fas fa-check-circle"></i> <strong>Validation Results</strong>
+      <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+        <li>Software boot: Success – UI loads correctly</li>
+        <li>Vehicle response: Real-time (50ms update cycle)</li>
+        <li>Parameter adjustment: Immediate effect on vehicle behaviour</li>
+        <li>Obstacle response: Steering activated at 1m, braking at closer range</li>
+        <li>Connectivity: ESP32 web server updates every 50ms</li>
       </ul>
     </div>
   </div>
 
-  <!-- ===== SECTION 7: TECHNICAL CHALLENGES & SOLUTIONS ===== -->
+  <!-- SECTION 6: SKILLS -->
   <div class="content-section">
-    <h2><i class="fas fa-bug"></i> Technical Challenges & Solutions</h2>
-    
-    <p><strong>Challenge 1: ESP32 Upload Issues</strong><br>
-    The ESP32's open-source nature means no official compiler. Arduino IDE required, but library changes during development separated UART and USB port functions. The UART port receives data from IDE, USB port handles Serial.print().</p>
-    <p><strong>Solution:</strong> After correcting tool settings, the program uploads successfully. The ESP32 performs as intended.</p>
-
-    <p><strong>Challenge 2: Program Won't Run Without IDE Connected</strong><br>
-    The ESP32 pauses at Serial.print() sections unless connected to Arduino IDE.</p>
-    <p><strong>Solution:</strong> Remove debug information for production – the device works when debug prints are removed or when powered independently.</p>
-
-    <p><strong>Challenge 3: Performance vs. Resolution Trade-off</strong><br>
-    16K LiDAR samples/second creates precise mapping but reduces performance.</p>
-    <p><strong>Solution:</strong> Sample rate stored as variable – users adjust resolution based on their hardware capabilities, making software universally accessible.</p>
-
-    <p><strong>Challenge 4: Unreal Engine Error Messages</strong><br>
-    Block-based programming (Blueprint) produces vague error messages without resolution descriptions.</p>
-    <p><strong>Solution:</strong> UI code is relatively simple; web server plugin handles HTTP connections independently.</p>
-  </div>
-
-  <!-- ===== SECTION 8: AGRICULTURAL CONTEXT & FUTURE WORK ===== -->
-  <div class="content-section">
-    <h2><i class="fas fa-seedling"></i> Agricultural Context – Why This Matters</h2>
-    <p>Autonomous farming addresses critical challenges: 70% increase in food demand needed by 2050, labour shortages, rising costs, and environmental sustainability. This system contributes to Precision Agriculture (PA) and 'Smart Farming' through:</p>
-    <ul>
-      <li><strong>Optimised resource use</strong> – precision application reduces water, fertiliser, pesticide waste</li>
-      <li><strong>Reduced emissions</strong> – optimised operations lower fuel use</li>
-      <li><strong>Improved soil health</strong> – potential for lighter, multiple smaller robots reduces compaction</li>
-      <li><strong>Labour safety</strong> – removes operators from hazardous operations</li>
-    </ul>
-    
-    <h3>Future Work</h3>
-    <ul>
-      <li>Integration with agricultural attachment recognition (using British standard hookup ports)</li>
-      <li>Swarm robotics coordination (multiple smaller robots instead of single large machines)</li>
-      <li>Full compression testing (Unreal Engine compile removes editor – final application size TBD)</li>
-    </ul>
-  </div>
-
-  <!-- ===== SECTION 9: SKILLS DEMONSTRATED ===== -->
-  <div class="content-section">
-    <h2><i class="fas fa-chalkboard-user"></i> Skills Demonstrated to Employers</h2>
+    <h2><i class="fas fa-chalkboard-user"></i> Skills Demonstrated</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Unreal Engine 5 (Blueprints/C++)</span>
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">ESP32 / Arduino (C++)</span>
@@ -230,31 +207,20 @@ POST /emergency   → { brake: 1 }
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Sensor Fusion</span>
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Path Planning Algorithms</span>
       <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Embedded Systems (Servo Control)</span>
-      <span class="skill-chip" style="background:rgba(249,115,22,0.2);">Cross-Disciplinary Integration</span>
     </div>
-    <p style="margin-top: 1rem;"><strong>For autonomous systems / robotics roles:</strong> This project proves I can build a complete autonomy stack – from sensor input to real-time control to simulation – on real hardware. The modular design (supporting different steering methods, adjustable sample rates) shows engineering foresight.</p>
   </div>
 
-  <!-- ===== SECTION 10: GITHUB & REPORT ===== -->
+  <!-- SECTION 7: LINKS -->
   <div class="content-section">
-    <h2><i class="fab fa-github"></i> GitHub Repository & Full Report</h2>
-    <p>The complete project – Unreal Engine Blueprints, ESP32 firmware, LiDAR integration, and full BEng report – is available.</p>
-    <div class="code-block">
-      <pre style="margin:0;">
-autonomous-farming-system/
-├── unreal_engine/     # Blueprints + self-pathing plugin integration
-├── esp32_firmware/    # Arduino C++ code for ESP32 S3
-├── web_interface/     # HTTP server HTML/CSS/JS
-├── docs/              # Full BEng project report (PDF)
-└── README.md          # Project overview + setup guide</pre>
-    </div>
-    <a href="#" class="btn-glow"><i class="fab fa-github"></i> View Repository (Coming Soon)</a>
-    <a href="#" class="btn-glow" style="background: #1E293B; color: white; margin-left: 0.5rem;"><i class="fas fa-file-pdf"></i> Download Full Report (BEng Dissertation)</a>
+    <h2><i class="fas fa-link"></i> Resources</h2>
+    <p>🔗 <strong>GitHub:</strong> <a href="https://github.com/PixelHD543" style="color:#FACC15;" target="_blank">github.com/PixelHD543</a> – Full project code available on request<br>
+    🔗 <strong>Full Report:</strong> Complete BEng dissertation available – <a href="#" style="color:#FACC15;">contact me</a> for access<br>
+    🔗 <strong>Portfolio Homepage:</strong> <a href="index.html" style="color:#FACC15;">Back to main portfolio</a></p>
   </div>
 
   <footer>
     <i class="far fa-copyright"></i> 2026 Samuel Foster – BEng Electrical & Electronic Engineering<br>
-    Autonomous farming system | Unreal Engine + ESP32 + LiDAR | Modular vehicle control
+    Autonomous farming system | Unreal Engine + ESP32 + LiDAR | Modular vehicle control | 16K samples/sec
   </footer>
 </div>
 </body>
